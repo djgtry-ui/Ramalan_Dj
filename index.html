@@ -568,12 +568,14 @@
                 tahunAdjusted = tempDate.getFullYear();
             }
             
+            // Referensi: 1 Januari 1990 = Senin Wage
             const baseDate = new Date(1990, 0, 1);
             const targetDate = new Date(tahunAdjusted, bulanAdjusted - 1, tanggalAdjusted);
             const diffTime = targetDate - baseDate;
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             
-            const pasaranList = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
+            // Urutan: Wage, Kliwon, Legi, Pahing, Pon (karena 1 Jan 1990 = Wage)
+            const pasaranList = ["Wage", "Kliwon", "Legi", "Pahing", "Pon"];
             const index = diffDays % 5;
             const pasaranNama = pasaranList[index];
             return { nama: pasaranNama, ...pasaranData[pasaranNama] };
@@ -1196,5 +1198,5 @@ Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase
             document.getElementById('detailKedua').classList.remove('hidden');
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afd7012377dff78',t:'MTc2NjA0ODA5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afd8ab3e1bb9fe3',t:'MTc2NjA0OTE4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
