@@ -108,7 +108,7 @@
         <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Shio Anda</h3>
         <p id="shioName" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
         <p id="shioDesc" class="text-gray-700 text-center text-base mb-2"></p>
-        <p class="text-gray-600 text-center text-sm italic mb-3">���️ <span id="shioNegatif"></span></p>
+        <p class="text-gray-600 text-center text-sm italic mb-3">�������️ <span id="shioNegatif"></span></p>
         <div class="text-center text-sm">
          <p class="mb-1"><strong>🍀 Hari Hoki:</strong> <span id="shioHariHoki" class="text-green-700"></span></p>
          <p class="mb-1"><strong>⚠️ Hari Naas:</strong> <span id="shioHariNaas" class="text-red-700"></span></p>
@@ -149,6 +149,7 @@
         </div>
         <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Neptu &amp; Watak Jawa</h3>
         <div class="bg-orange-50 rounded-lg p-4 mb-3">
+         <p class="text-center text-base mb-2">📅 <strong>Tanggal Lahir:</strong> <span id="neptuTanggalLahir" class="text-gray-700"></span></p>
          <p class="text-center text-lg mb-2"><strong>Hari Lahir:</strong> <span id="neptuHari" class="text-purple-700 font-bold"></span> (Neptu: <span id="neptuHariValue" class="text-purple-700 font-bold"></span>)</p>
          <p class="text-center text-lg mb-2"><strong>Pasaran:</strong> <span id="neptuPasaran" class="text-purple-700 font-bold"></span> (Neptu: <span id="neptuPasaranValue" class="text-purple-700 font-bold"></span>)</p>
          <p class="text-center text-2xl font-bold text-orange-600">Total Neptu: <span id="neptuTotal"></span></p>
@@ -278,7 +279,7 @@
          <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Shio</h3>
          <p id="shioNameKedua" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
          <p id="shioDescKedua" class="text-gray-700 text-center text-base mb-2"></p>
-         <p class="text-gray-600 text-center text-sm italic mb-3">⚠️ <span id="shioNegatifKedua"></span></p>
+         <p class="text-gray-600 text-center text-sm italic mb-3">�����️ <span id="shioNegatifKedua"></span></p>
          <div class="text-center text-sm">
           <p class="mb-1"><strong>🍀 Hari Hoki:</strong> <span id="shioHariHokiKedua" class="text-green-700"></span></p>
           <p class="mb-1"><strong>⚠️ Hari Naas:</strong> <span id="shioHariNaasKedua" class="text-red-700"></span></p>
@@ -289,7 +290,7 @@
          <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Zodiak</h3>
          <p id="zodiakNameKedua" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
          <p id="zodiakDescKedua" class="text-gray-700 text-center text-base mb-2"></p>
-         <p class="text-gray-600 text-center text-sm italic mb-3">⚠️ <span id="zodiakNegatifKedua"></span></p>
+         <p class="text-gray-600 text-center text-sm italic mb-3">��️ <span id="zodiakNegatifKedua"></span></p>
          <div class="text-center text-sm">
           <p class="mb-1"><strong>🍀 Hari Hoki:</strong> <span id="zodiakHariHokiKedua" class="text-green-700"></span></p>
           <p class="mb-1"><strong>⚠️ Hari Naas:</strong> <span id="zodiakHariNaasKedua" class="text-red-700"></span></p>
@@ -318,11 +319,13 @@
          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div class="bg-purple-50 rounded-lg p-4">
            <p class="text-center font-semibold text-purple-700" id="neptuNamaPertama"></p>
+           <p class="text-center text-xs mb-1">📅 <span id="neptuTanggalPertama" class="text-gray-600"></span></p>
            <p class="text-center text-sm" id="neptuDetailPertama"></p>
            <p class="text-center text-2xl font-bold text-purple-600">Neptu: <span id="neptuValuePertama"></span></p>
           </div>
           <div class="bg-pink-50 rounded-lg p-4">
            <p class="text-center font-semibold text-pink-700" id="neptuNamaKedua"></p>
+           <p class="text-center text-xs mb-1">📅 <span id="neptuTanggalKedua" class="text-gray-600"></span></p>
            <p class="text-center text-sm" id="neptuDetailKedua"></p>
            <p class="text-center text-2xl font-bold text-pink-600">Neptu: <span id="neptuValueKedua"></span></p>
           </div>
@@ -609,6 +612,7 @@
       // Waktu lahir dalam format "HH:mm"
       const [jam, menit] = waktuLahir.split(':').map(Number);
       
+      // Referensi: 1 Januari 1900 adalah Hari Senin Wage
       // Jika lahir setelah jam 18.00 (Maghrib), maka sudah masuk hari Jawa berikutnya
       let tanggalAdjusted = tanggal;
       let bulanAdjusted = bulan;
@@ -623,11 +627,14 @@
         tahunAdjusted = tempDate.getFullYear();
       }
       
-      const baseDate = new Date(1900, 0, 1);
+      // Hitung selisih hari dari 1 Januari 1900 (Senin Wage)
+      const baseDate = new Date(1900, 0, 1); // 1 Januari 1900 = Senin Wage
       const targetDate = new Date(tahunAdjusted, bulanAdjusted - 1, tanggalAdjusted);
       const diffTime = targetDate - baseDate;
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      const pasaranList = ["Kliwon", "Legi", "Pahing", "Pon", "Wage"];
+      
+      // Pasaran berputar setiap 5 hari: Wage, Kliwon, Legi, Pahing, Pon
+      const pasaranList = ["Wage", "Kliwon", "Legi", "Pahing", "Pon"];
       const index = diffDays % 5;
       const pasaranNama = pasaranList[index];
       return { nama: pasaranNama, ...pasaranData[pasaranNama] };
@@ -1172,6 +1179,12 @@
       const numerologi = hitungNumerologi(nama);
       const neptuWatak = hitungNeptuWatak(tanggal, bulan, tahun, waktuLahir, pasaran);
 
+      // Format tanggal lahir
+      const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+      const tanggalLahirFormatted = `${tanggal} ${namaBulan[bulan - 1]} ${tahun}`;
+      
+      document.getElementById('neptuTanggalLahir').textContent = tanggalLahirFormatted;
+
       document.getElementById('shioIcon').textContent = shio.nama.split(' ')[1];
       document.getElementById('shioName').textContent = shio.nama;
       document.getElementById('shioDesc').textContent = shio.deskripsi;
@@ -1340,11 +1353,18 @@ Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase
       document.getElementById('numerologiDescKedua').textContent = numerologiKedua.deskripsi;
       document.getElementById('numerologiNegatifKedua').textContent = numerologiKedua.negatif;
 
+      // Format tanggal lahir untuk pasangan
+      const namaBulanPasangan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+      const tanggalPertamaFormatted = `${tanggalPertama} ${namaBulanPasangan[bulanPertama - 1]} ${tahunPertama}`;
+      const tanggalKeduaFormatted = `${tanggalKedua} ${namaBulanPasangan[bulanKedua - 1]} ${tahunKedua}`;
+
       document.getElementById('neptuNamaPertama').textContent = namaPertama;
+      document.getElementById('neptuTanggalPertama').textContent = tanggalPertamaFormatted;
       document.getElementById('neptuDetailPertama').textContent = `${neptuWatakPertama.hari} ${neptuWatakPertama.pasaran}`;
       document.getElementById('neptuValuePertama').textContent = neptuWatakPertama.totalNeptu;
 
       document.getElementById('neptuNamaKedua').textContent = namaKedua;
+      document.getElementById('neptuTanggalKedua').textContent = tanggalKeduaFormatted;
       document.getElementById('neptuDetailKedua').textContent = `${neptuWatakKedua.hari} ${neptuWatakKedua.pasaran}`;
       document.getElementById('neptuValueKedua').textContent = neptuWatakKedua.totalNeptu;
 
@@ -1449,5 +1469,5 @@ Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase
       }
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afcf2aa6796b6d2',t:'MTc2NjA0Mjk1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afd4a0323e3b5ca',t:'MTc2NjA0NjUzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
