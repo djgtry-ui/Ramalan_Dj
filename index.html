@@ -108,7 +108,7 @@
         <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Shio Anda</h3>
         <p id="shioName" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
         <p id="shioDesc" class="text-gray-700 text-center text-base mb-2"></p>
-        <p class="text-gray-600 text-center text-sm italic mb-3">⚠️ <span id="shioNegatif"></span></p>
+        <p class="text-gray-600 text-center text-sm italic mb-3">���️ <span id="shioNegatif"></span></p>
         <div class="text-center text-sm">
          <p class="mb-1"><strong>🍀 Hari Hoki:</strong> <span id="shioHariHoki" class="text-green-700"></span></p>
          <p class="mb-1"><strong>⚠️ Hari Naas:</strong> <span id="shioHariNaas" class="text-red-700"></span></p>
@@ -142,6 +142,21 @@
         <p id="pasaranName" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
         <p id="pasaranDesc" class="text-gray-700 text-center text-base mb-2"></p>
         <p class="text-gray-600 text-center text-sm italic">⚠️ <span id="pasaranNegatif"></span></p>
+       </div><!-- Neptu & Watak Jawa -->
+       <div class="result-card md:col-span-2">
+        <div class="icon-circle" style="background: linear-gradient(135deg, #FFA500, #FF8C00);">
+         🎴
+        </div>
+        <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Neptu &amp; Watak Jawa</h3>
+        <div class="bg-orange-50 rounded-lg p-4 mb-3">
+         <p class="text-center text-lg mb-2"><strong>Hari Lahir:</strong> <span id="neptuHari" class="text-purple-700 font-bold"></span> (Neptu: <span id="neptuHariValue" class="text-purple-700 font-bold"></span>)</p>
+         <p class="text-center text-lg mb-2"><strong>Pasaran:</strong> <span id="neptuPasaran" class="text-purple-700 font-bold"></span> (Neptu: <span id="neptuPasaranValue" class="text-purple-700 font-bold"></span>)</p>
+         <p class="text-center text-2xl font-bold text-orange-600">Total Neptu: <span id="neptuTotal"></span></p>
+        </div>
+        <p class="text-center text-2xl font-bold text-purple-700 mb-2">Watak: <span id="neptuWatakNama"></span></p>
+        <p id="neptuWatakDesc" class="text-gray-700 text-center text-base mb-2"></p>
+        <p class="text-gray-700 text-center text-sm mb-2">✨ <strong>Sifat:</strong> <span id="neptuWatakSifat"></span></p>
+        <p class="text-gray-600 text-center text-sm italic">⚠️ <span id="neptuWatakNegatif"></span></p>
        </div><!-- Numerologi Nama -->
        <div class="result-card md:col-span-2">
         <div id="numerologiIcon" class="icon-circle" style="background: linear-gradient(135deg, #DDA0DD, #BA55D3);"></div>
@@ -295,6 +310,38 @@
          <p class="text-gray-600 text-center text-sm italic">⚠️ <span id="numerologiNegatifKedua"></span></p>
         </div>
        </div>
+      </div><!-- Perjodohan Neptu Jawa -->
+      <div class="card">
+       <div class="rounded-xl p-6" style="background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);">
+        <h2 class="text-3xl font-bold text-white text-center mb-4">🎴 Perjodohan Neptu Jawa</h2>
+        <div class="bg-white bg-opacity-95 rounded-lg p-6">
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-purple-50 rounded-lg p-4">
+           <p class="text-center font-semibold text-purple-700" id="neptuNamaPertama"></p>
+           <p class="text-center text-sm" id="neptuDetailPertama"></p>
+           <p class="text-center text-2xl font-bold text-purple-600">Neptu: <span id="neptuValuePertama"></span></p>
+          </div>
+          <div class="bg-pink-50 rounded-lg p-4">
+           <p class="text-center font-semibold text-pink-700" id="neptuNamaKedua"></p>
+           <p class="text-center text-sm" id="neptuDetailKedua"></p>
+           <p class="text-center text-2xl font-bold text-pink-600">Neptu: <span id="neptuValueKedua"></span></p>
+          </div>
+         </div>
+         <div class="bg-orange-50 rounded-lg p-4 mb-4">
+          <p class="text-center text-lg">Selisih Neptu: <span id="neptuSelisih" class="font-bold text-orange-600"></span></p>
+          <p class="text-center text-lg">Hasil Modulo 10: <span id="neptuHasil" class="font-bold text-orange-600"></span></p>
+         </div>
+         <div class="text-center mb-4">
+          <p class="text-3xl font-bold text-purple-700 mb-2" id="perjodohanNeptuNama"></p>
+          <p class="text-xl font-semibold mb-2" id="perjodohanNeptuTingkat"></p>
+          <p class="text-gray-700 mb-2" id="perjodohanNeptuDesc"></p>
+         </div>
+         <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+          <h4 class="font-bold text-blue-800 mb-2">💡 Saran Primbon Jawa:</h4>
+          <p class="text-gray-700" id="perjodohanNeptuSaran"></p>
+         </div>
+        </div>
+       </div>
       </div><!-- Analisis Kecocokan Per Versi -->
       <div class="card">
        <div id="kecocokanBg" class="rounded-xl p-6">
@@ -398,6 +445,45 @@
       4: 8, // Kamis
       5: 6, // Jumat
       6: 9  // Sabtu
+    };
+
+    const namaHari = {
+      0: "Minggu",
+      1: "Senin",
+      2: "Selasa",
+      3: "Rabu",
+      4: "Kamis",
+      5: "Jumat",
+      6: "Sabtu"
+    };
+
+    // Data Watak berdasarkan Total Neptu (Hari + Pasaran)
+    const watakNeptu = {
+      7: { nama: "Sri", watak: "Beruntung dalam rezeki, mudah mendapat kebahagiaan hidup", sifat: "Dermawan, penyayang, suka menolong", negatif: "Terlalu boros, kurang waspada" },
+      8: { nama: "Lungguh", watak: "Disegani dan dihormati, memiliki wibawa tinggi", sifat: "Bijaksana, tenang, berkharisma", negatif: "Terlalu serius, kaku dalam pergaulan" },
+      9: { nama: "Dewa/Kutug", watak: "Beruntung dan diberkahi, tetapi juga mudah mendapat cobaan", sifat: "Spiritual, intuitif, kuat mental", negatif: "Mudah kesepian, sulit dipahami" },
+      10: { nama: "Jangkung", watak: "Baik hati dan penyayang, namun kurang stabil", sifat: "Ramah, mudah bergaul, periang", negatif: "Tidak konsisten, mudah terpengaruh" },
+      11: { nama: "Watu Gunung", watak: "Kokoh dan kuat seperti batu gunung, pekerja keras", sifat: "Tekun, sabar, tidak mudah menyerah", negatif: "Keras kepala, sulit berubah" },
+      12: { nama: "Lintah", watak: "Ulet dan gigih dalam usaha, tidak mudah putus asa", sifat: "Pantang menyerah, rajin, teliti", negatif: "Terlalu perhitungan, pelit" },
+      13: { nama: "Sapi Gumarang", watak: "Pekerja keras dan dapat diandalkan, namun kurang peruntungan", sifat: "Bertanggung jawab, jujur, setia", negatif: "Sering kelelahan, kurang beruntung" },
+      14: { nama: "Bumi", watak: "Membumi dan stabil, cocok untuk usaha jangka panjang", sifat: "Praktis, realistis, dapat dipercaya", negatif: "Kurang inovatif, terlalu hati-hati" },
+      15: { nama: "Guru/Gaib", watak: "Memiliki kemampuan spiritual, sering mendapat petunjuk gaib", sifat: "Bijaksana, visioner, memiliki firasat kuat", negatif: "Terlalu mistis, sulit dijelaskan logika" },
+      16: { nama: "Geni/Api", watak: "Berapi-api dan penuh semangat, pemimpin alami", sifat: "Berani, tegas, penuh energi", negatif: "Temperamental, mudah marah" },
+      17: { nama: "Jin Pambeleng", watak: "Kuat mental namun sering mendapat gangguan halus", sifat: "Kuat, tangguh, tidak mudah menyerah", negatif: "Sering sakit-sakitan, mimpi buruk" }
+    };
+
+    // Watak Perjodohan berdasarkan Selisih Neptu
+    const watakPerjodohan = {
+      0: { nama: "Pegat", tingkat: "Sangat Kurang Baik", deskripsi: "Rawan terjadi perpisahan atau perceraian. Banyak pertengkaran dan ketidakcocokan.", saran: "Butuh komitmen sangat kuat dan kesabaran luar biasa. Perbanyak komunikasi dan saling pengertian." },
+      1: { nama: "Ratu", tingkat: "Sangat Baik", deskripsi: "Pasangan yang mulia dan saling menghormati. Disegani lingkungan sekitar.", saran: "Pertahankan saling menghargai. Jadilah teladan bagi pasangan lain." },
+      2: { nama: "Jodoh", tingkat: "Sangat Baik", deskripsi: "Benar-benar jodoh. Sangat cocok dan harmonis dalam segala hal.", saran: "Syukuri keberuntungan ini. Jaga selalu komunikasi dan kepercayaan." },
+      3: { nama: "Topo", tingkat: "Cukup Baik", deskripsi: "Awalnya sulit, namun akan bahagia di akhir. Butuh perjuangan.", saran: "Bersabar dan tetap bertahan. Kebahagiaan akan datang seiring waktu." },
+      4: { nama: "Tinari", tingkat: "Baik", deskripsi: "Hidup bahagia dan berkecukupan. Rezeki lancar.", saran: "Kelola keuangan dengan baik. Tetap rendah hati meski beruntung." },
+      5: { nama: "Padu", tingkat: "Kurang Baik", deskripsi: "Sering bertengkar namun tidak sampai bercerai. Hubungan bertahan.", saran: "Belajar mengendalikan emosi. Cari cara untuk saling memahami." },
+      6: { nama: "Sujanan", tingkat: "Perlu Perhatian", deskripsi: "Rawan perselingkuhan dan godaan dari luar.", saran: "Jaga komitmen dan loyalitas. Hindari situasi yang memicu godaan." },
+      7: { nama: "Pesthi", tingkat: "Sangat Baik", deskripsi: "Rukun dan harmonis hingga tua. Jarang ada masalah besar.", saran: "Terus jaga keharmonisan. Saling support dalam suka dan duka." },
+      8: { nama: "Pangkat", tingkat: "Baik", deskripsi: "Naik pangkat dan kedudukan. Mendapat kehormatan.", saran: "Manfaatkan kesuksesan untuk hal positif. Jangan sombong." },
+      9: { nama: "Manis", tingkat: "Baik", deskripsi: "Hubungan manis dan menyenangkan. Penuh kasih sayang.", saran: "Jaga romantisme. Terus ekspresikan cinta dan perhatian." }
     };
 
     // Data Hasil Weton Jodoh
@@ -545,6 +631,53 @@
       const index = diffDays % 5;
       const pasaranNama = pasaranList[index];
       return { nama: pasaranNama, ...pasaranData[pasaranNama] };
+    }
+
+    function hitungNeptuWatak(tanggal, bulan, tahun, waktuLahir, pasaran) {
+      let tanggalAdjusted = tanggal;
+      let bulanAdjusted = bulan;
+      let tahunAdjusted = tahun;
+      const [jam] = waktuLahir.split(':').map(Number);
+      
+      if (jam >= 18) {
+        const tempDate = new Date(tahun, bulan - 1, tanggal);
+        tempDate.setDate(tempDate.getDate() + 1);
+        tanggalAdjusted = tempDate.getDate();
+        bulanAdjusted = tempDate.getMonth() + 1;
+        tahunAdjusted = tempDate.getFullYear();
+      }
+      
+      const date = new Date(tahunAdjusted, bulanAdjusted - 1, tanggalAdjusted);
+      const hari = date.getDay();
+      const neptuHariValue = neptuHari[hari];
+      const neptuPasaranValue = pasaran.neptu;
+      const totalNeptu = neptuHariValue + neptuPasaranValue;
+      
+      let watakData = watakNeptu[totalNeptu] || watakNeptu[7];
+      
+      return {
+        hari: namaHari[hari],
+        neptuHari: neptuHariValue,
+        pasaran: pasaran.nama,
+        neptuPasaran: neptuPasaranValue,
+        totalNeptu,
+        watak: watakData
+      };
+    }
+
+    function hitungPerjodohanNeptu(neptu1, neptu2) {
+      const selisih = Math.abs(neptu1 - neptu2);
+      const hasil = selisih % 10;
+      
+      const watakData = watakPerjodohan[hasil] || watakPerjodohan[0];
+      
+      return {
+        neptu1,
+        neptu2,
+        selisih,
+        hasil,
+        watak: watakData
+      };
     }
 
     function hitungNumerologi(nama) {
@@ -1037,6 +1170,7 @@
       const zodiak = hitungZodiak(tanggal, bulan);
       const pasaran = hitungPasaran(tanggal, bulan, tahun, waktuLahir);
       const numerologi = hitungNumerologi(nama);
+      const neptuWatak = hitungNeptuWatak(tanggal, bulan, tahun, waktuLahir, pasaran);
 
       document.getElementById('shioIcon').textContent = shio.nama.split(' ')[1];
       document.getElementById('shioName').textContent = shio.nama;
@@ -1066,16 +1200,28 @@
       document.getElementById('pasaranDesc').textContent = pasaran.deskripsi;
       document.getElementById('pasaranNegatif').textContent = pasaran.negatif;
 
+      document.getElementById('neptuHari').textContent = neptuWatak.hari;
+      document.getElementById('neptuHariValue').textContent = neptuWatak.neptuHari;
+      document.getElementById('neptuPasaran').textContent = neptuWatak.pasaran;
+      document.getElementById('neptuPasaranValue').textContent = neptuWatak.neptuPasaran;
+      document.getElementById('neptuTotal').textContent = neptuWatak.totalNeptu;
+      document.getElementById('neptuWatakNama').textContent = neptuWatak.watak.nama;
+      document.getElementById('neptuWatakDesc').textContent = neptuWatak.watak.watak;
+      document.getElementById('neptuWatakSifat').textContent = neptuWatak.watak.sifat;
+      document.getElementById('neptuWatakNegatif').textContent = neptuWatak.watak.negatif;
+
       document.getElementById('numerologiIcon').textContent = `#${numerologi.angka}`;
       document.getElementById('numerologiAngka').textContent = `Angka ${numerologi.angka}`;
       document.getElementById('numerologiDesc').textContent = numerologi.deskripsi;
       document.getElementById('numerologiNegatif').textContent = numerologi.negatif;
 
-      const kesimpulanText = `Berdasarkan analisis lengkap ramalan Anda, Anda adalah pribadi ${shio.nama.split(' ')[0]} dengan unsur ${unsur.nama} dan zodiak ${zodiak.nama.split(' ')[0]}. Kombinasi ini menunjukkan bahwa Anda memiliki kekuatan utama dalam ${shio.deskripsi.split('.')[0].toLowerCase()}, didukung oleh sifat ${unsur.nama.toLowerCase()} yang ${unsur.deskripsi.split('.')[0].toLowerCase()}. Sebagai ${zodiak.nama.split(' ')[0]}, Anda cenderung ${zodiak.deskripsi.split('.')[0].toLowerCase()}. Hari Pasaran Jawa Anda, ${pasaran.nama}, mengindikasikan ${pasaran.deskripsi.split('.')[0].toLowerCase()}. Karakter nama Anda dengan angka ${numerologi.angka} menunjukkan ${numerologi.deskripsi.split('.')[0].toLowerCase()}. 
+      const kesimpulanText = `Berdasarkan analisis lengkap ramalan Anda, Anda adalah pribadi ${shio.nama.split(' ')[0]} dengan unsur ${unsur.nama} dan zodiak ${zodiak.nama.split(' ')[0]}. Kombinasi ini menunjukkan bahwa Anda memiliki kekuatan utama dalam ${shio.deskripsi.split('.')[0].toLowerCase()}, didukung oleh sifat ${unsur.nama.toLowerCase()} yang ${unsur.deskripsi.split('.')[0].toLowerCase()}. Sebagai ${zodiak.nama.split(' ')[0]}, Anda cenderung ${zodiak.deskripsi.split('.')[0].toLowerCase()}. 
+
+Menurut Primbon Jawa, Anda lahir pada hari ${neptuWatak.hari} ${neptuWatak.pasaran} dengan total neptu ${neptuWatak.totalNeptu} (Hari: ${neptuWatak.neptuHari} + Pasaran: ${neptuWatak.neptuPasaran}). Watak Anda adalah "${neptuWatak.watak.nama}" yang berarti ${neptuWatak.watak.watak.toLowerCase()}. Sifat utama Anda: ${neptuWatak.watak.sifat.toLowerCase()}. Karakter nama Anda dengan angka ${numerologi.angka} menunjukkan ${numerologi.deskripsi.split('.')[0].toLowerCase()}. 
 
 Untuk mencapai potensi terbaik, manfaatkan hari keberuntungan Anda (Shio: ${shio.hariHoki}, Zodiak: ${zodiak.hariHoki}) untuk mengambil keputusan penting. Hindari mengambil risiko besar pada hari naas Anda. Dalam hubungan, Anda paling harmonis dengan ${shio.cocok[0]} dan ${zodiak.cocok[0]}, namun perlu ekstra kesabaran dengan ${shio.bentrok[0]} dan ${zodiak.bentrok[0]}. 
 
-Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase()}, ${unsur.negatif.split('.')[0].toLowerCase()}, dan ${zodiak.negatif.split('.')[0].toLowerCase()}. Dengan mengenali dan mengelola sisi negatif ini sambil mengoptimalkan kekuatan Anda, Anda dapat menjalani hidup yang lebih seimbang dan sukses.`;
+Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase()}, ${unsur.negatif.split('.')[0].toLowerCase()}, ${zodiak.negatif.split('.')[0].toLowerCase()}, dan ${neptuWatak.watak.negatif.toLowerCase()}. Dengan mengenali dan mengelola sisi negatif ini sambil mengoptimalkan kekuatan Anda, Anda dapat menjalani hidup yang lebih seimbang dan sukses.`;
 
       document.getElementById('kesimpulan').textContent = kesimpulanText;
 
@@ -1115,12 +1261,17 @@ Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase
       const pasaranKedua = hitungPasaran(tanggalKedua, bulanKedua, tahunKedua, waktuLahirKedua);
       const numerologiKedua = hitungNumerologi(namaKedua);
 
+      const neptuWatakPertama = hitungNeptuWatak(tanggalPertama, bulanPertama, tahunPertama, waktuLahirPertama, pasaranPertama);
+      const neptuWatakKedua = hitungNeptuWatak(tanggalKedua, bulanKedua, tahunKedua, waktuLahirKedua, pasaranKedua);
+      const perjodohanNeptu = hitungPerjodohanNeptu(neptuWatakPertama.totalNeptu, neptuWatakKedua.totalNeptu);
+
       dataPasangan = {
         namaPertama,
         shioPertama,
         zodiakPertama,
         pasaranPertama,
         numerologiPertama,
+        neptuWatakPertama,
         tanggal1: tanggalPertama,
         bulan1: bulanPertama,
         tahun1: tahunPertama,
@@ -1130,10 +1281,12 @@ Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase
         zodiakKedua,
         pasaranKedua,
         numerologiKedua,
+        neptuWatakKedua,
         tanggal2: tanggalKedua,
         bulan2: bulanKedua,
         tahun2: tahunKedua,
-        waktu2: waktuLahirKedua
+        waktu2: waktuLahirKedua,
+        perjodohanNeptu
       };
 
       document.getElementById('namaPertamaResult').textContent = namaPertama;
@@ -1186,6 +1339,21 @@ Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase
       document.getElementById('numerologiAngkaKedua').textContent = `Angka ${numerologiKedua.angka}`;
       document.getElementById('numerologiDescKedua').textContent = numerologiKedua.deskripsi;
       document.getElementById('numerologiNegatifKedua').textContent = numerologiKedua.negatif;
+
+      document.getElementById('neptuNamaPertama').textContent = namaPertama;
+      document.getElementById('neptuDetailPertama').textContent = `${neptuWatakPertama.hari} ${neptuWatakPertama.pasaran}`;
+      document.getElementById('neptuValuePertama').textContent = neptuWatakPertama.totalNeptu;
+
+      document.getElementById('neptuNamaKedua').textContent = namaKedua;
+      document.getElementById('neptuDetailKedua').textContent = `${neptuWatakKedua.hari} ${neptuWatakKedua.pasaran}`;
+      document.getElementById('neptuValueKedua').textContent = neptuWatakKedua.totalNeptu;
+
+      document.getElementById('neptuSelisih').textContent = perjodohanNeptu.selisih;
+      document.getElementById('neptuHasil').textContent = perjodohanNeptu.hasil;
+      document.getElementById('perjodohanNeptuNama').textContent = perjodohanNeptu.watak.nama;
+      document.getElementById('perjodohanNeptuTingkat').textContent = `Tingkat: ${perjodohanNeptu.watak.tingkat}`;
+      document.getElementById('perjodohanNeptuDesc').textContent = perjodohanNeptu.watak.deskripsi;
+      document.getElementById('perjodohanNeptuSaran').textContent = perjodohanNeptu.watak.saran;
 
       document.getElementById('formPasangan').classList.add('hidden');
       document.getElementById('resultsPasangan').classList.remove('hidden');
@@ -1281,5 +1449,5 @@ Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase
       }
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afcdf8be13d1184',t:'MTc2NjA0MjE3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afcf2aa6796b6d2',t:'MTc2NjA0Mjk1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
