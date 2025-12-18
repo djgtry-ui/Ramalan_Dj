@@ -3,59 +3,78 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ramalan Lengkap</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script><!-- ============================================ --> <!-- ============== BAGIAN CSS ================= --> <!-- ============================================ -->
+  <title>Ramalan Lengkap Jawa - Shio, Zodiak, Pasaran &amp; Numerologi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      box-sizing: border-box;
-    }
-    
-    .gradient-bg {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      padding: 24px;
-      margin-bottom: 20px;
-    }
-    
-    .result-card {
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-    
-    .icon-circle {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      margin: 0 auto 12px;
-    }
-  </style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 12px;
+        }
+
+        .hijriah-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #48c6ef 0%, #6f86d6 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 8px 0;
+            box-shadow: 0 4px 15px rgba(72, 198, 239, 0.3);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-left: 4px solid #ff6b6b;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+    </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head><!-- ============================================ --> <!-- ============== BAGIAN HTML ================ --> <!-- ============================================ -->
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
  <body class="h-full w-full">
   <div id="app" class="h-full w-full overflow-auto gradient-bg">
    <div class="w-full max-w-4xl mx-auto p-6">
     <header class="text-center mb-8 pt-6">
-     <h1 id="mainTitle" class="text-white text-5xl font-bold mb-3">Ramalan Lengkap</h1>
-     <p id="subtitle" class="text-white text-xl opacity-90">Shio, Unsur, Zodiak, Hari Pasaran Jawa &amp; Numerologi Nama</p>
+     <h1 id="mainTitle" class="text-white text-5xl font-bold mb-3">🌙 Ramalan Lengkap Jawa</h1>
+     <p id="subtitle" class="text-white text-xl opacity-90">Shio, Unsur, Zodiak, Hari Pasaran Jawa, Tanggal Hijriah &amp; Numerologi Nama</p>
     </header><!-- Menu Pilihan -->
     <div id="menuPage" class="card">
      <h2 class="text-3xl font-bold text-purple-700 text-center mb-8">Pilih Jenis Ramalan</h2>
      <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><button id="btnDiriSendiri" class="bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-2xl p-8 transition duration-300 transform hover:scale-105 shadow-lg">
        <div class="text-6xl mb-4">
-        🧘‍♂️
+        🧍‍♂️
        </div><h3 class="text-2xl font-bold mb-2">Ramalan Diri Sendiri</h3><p class="text-white text-opacity-90">Ketahui kepribadian dan peruntungan Anda</p></button> <button id="btnPasangan" class="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-2xl p-8 transition duration-300 transform hover:scale-105 shadow-lg">
        <div class="text-6xl mb-4">
         💑
@@ -71,7 +90,7 @@
       </div>
       <div class="mb-6"><label for="waktuLahirDiri" class="block text-gray-700 text-lg font-semibold mb-2">Waktu Lahir</label> <input type="time" id="waktuLahirDiri" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none text-lg" required>
        <p class="text-sm text-gray-600 mt-2">💡 <strong>Penting:</strong> Jika lahir setelah jam 18.00 (Maghrib), sudah masuk hari Jawa berikutnya</p>
-      </div><button type="submit" id="calculateBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300"> Lihat Ramalan </button>
+      </div><button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300"> Lihat Ramalan Lengkap </button>
      </form>
     </div><!-- Form Pasangan -->
     <div id="formPasangan" class="card hidden"><button id="backFromPasangan" class="mb-4 text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Kembali ke Menu </button>
@@ -96,19 +115,24 @@
        <div><label for="waktuLahirKedua" class="block text-gray-700 text-lg font-semibold mb-2">Waktu Lahir</label> <input type="time" id="waktuLahirKedua" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none text-lg" required>
         <p class="text-sm text-gray-600 mt-2">💡 Lahir setelah jam 18.00 = hari Jawa berikutnya</p>
        </div>
-      </div><button type="submit" id="resetBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300"> Lihat Hasil Kecocokan </button>
+      </div><button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300"> Lihat Hasil Kecocokan </button>
      </form>
     </div><!-- Hasil Diri Sendiri -->
     <div id="resultsDiri" class="hidden">
      <div class="card"><button id="backFromResultDiri" class="mb-4 text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Kembali ke Menu </button>
-      <h2 class="text-3xl font-bold text-purple-700 text-center mb-6">Hasil Ramalan Anda</h2>
+      <h2 class="text-3xl font-bold text-purple-700 text-center mb-6">✨ Hasil Ramalan Anda</h2><!-- Info Tanggal Lahir -->
+      <div class="info-box mb-6">
+       <h3 class="text-lg font-bold text-gray-800 mb-2">📅 Informasi Tanggal Lahir</h3>
+       <p class="text-gray-700 mb-1"><strong>Masehi:</strong> <span id="tanggalMasehi"></span></p>
+       <p class="text-gray-700"><strong>Hijriah:</strong> <span id="tanggalHijriah" class="hijriah-badge"></span></p>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><!-- Shio -->
        <div class="result-card">
         <div id="shioIcon" class="icon-circle" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);"></div>
         <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Shio Anda</h3>
         <p id="shioName" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
         <p id="shioDesc" class="text-gray-700 text-center text-base mb-2"></p>
-        <p class="text-gray-600 text-center text-sm italic mb-3">�������️ <span id="shioNegatif"></span></p>
+        <p class="text-gray-600 text-center text-sm italic mb-3">⚠️ <span id="shioNegatif"></span></p>
         <div class="text-center text-sm">
          <p class="mb-1"><strong>🍀 Hari Hoki:</strong> <span id="shioHariHoki" class="text-green-700"></span></p>
          <p class="mb-1"><strong>⚠️ Hari Naas:</strong> <span id="shioHariNaas" class="text-red-700"></span></p>
@@ -149,7 +173,6 @@
         </div>
         <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Neptu &amp; Watak Jawa</h3>
         <div class="bg-orange-50 rounded-lg p-4 mb-3">
-         <p class="text-center text-base mb-2">📅 <strong>Tanggal Lahir:</strong> <span id="neptuTanggalLahir" class="text-gray-700"></span></p>
          <p class="text-center text-lg mb-2"><strong>Hari Lahir:</strong> <span id="neptuHari" class="text-purple-700 font-bold"></span> (Neptu: <span id="neptuHariValue" class="text-purple-700 font-bold"></span>)</p>
          <p class="text-center text-lg mb-2"><strong>Pasaran:</strong> <span id="neptuPasaran" class="text-purple-700 font-bold"></span> (Neptu: <span id="neptuPasaranValue" class="text-purple-700 font-bold"></span>)</p>
          <p class="text-center text-2xl font-bold text-orange-600">Total Neptu: <span id="neptuTotal"></span></p>
@@ -179,7 +202,19 @@
     </div><!-- Hasil Pasangan -->
     <div id="resultsPasangan" class="hidden">
      <div class="card"><button id="backFromResultPasangan" class="mb-4 text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Kembali ke Menu </button>
-      <h2 class="text-3xl font-bold text-purple-700 text-center mb-6">💑 Hasil Ramalan Pasangan</h2><!-- Pilihan Versi Penilaian -->
+      <h2 class="text-3xl font-bold text-purple-700 text-center mb-6">💑 Hasil Ramalan Pasangan</h2><!-- Info Tanggal Lahir Pasangan -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+       <div class="info-box">
+        <h3 class="text-lg font-bold text-gray-800 mb-2">👤 <span id="infoNamaPertama"></span></h3>
+        <p class="text-gray-700 mb-1"><strong>Masehi:</strong> <span id="tanggalMasehiPertama"></span></p>
+        <p class="text-gray-700"><strong>Hijriah:</strong> <span id="tanggalHijriahPertama" class="hijriah-badge"></span></p>
+       </div>
+       <div class="info-box">
+        <h3 class="text-lg font-bold text-gray-800 mb-2">👤 <span id="infoNamaKedua"></span></h3>
+        <p class="text-gray-700 mb-1"><strong>Masehi:</strong> <span id="tanggalMasehiKedua"></span></p>
+        <p class="text-gray-700"><strong>Hijriah:</strong> <span id="tanggalHijriahKedua" class="hijriah-badge"></span></p>
+       </div>
+      </div><!-- Pilihan Versi Penilaian -->
       <div class="mb-6">
        <h3 class="text-2xl font-bold text-purple-700 text-center mb-4">Pilih Versi Penilaian</h3>
        <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><button id="versiShioZodiak" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-lg"> 🐉 Shio &amp; Zodiak </button> <button id="versiPasaranNumerologi" class="bg-gradient-to-r from-blue-500 to-teal-500 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-blue-600 hover:to-teal-600 transition duration-300 shadow-lg"> 🌙 Pasaran &amp; Numerologi </button>
@@ -279,7 +314,7 @@
          <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Shio</h3>
          <p id="shioNameKedua" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
          <p id="shioDescKedua" class="text-gray-700 text-center text-base mb-2"></p>
-         <p class="text-gray-600 text-center text-sm italic mb-3">�����️ <span id="shioNegatifKedua"></span></p>
+         <p class="text-gray-600 text-center text-sm italic mb-3">⚠️ <span id="shioNegatifKedua"></span></p>
          <div class="text-center text-sm">
           <p class="mb-1"><strong>🍀 Hari Hoki:</strong> <span id="shioHariHokiKedua" class="text-green-700"></span></p>
           <p class="mb-1"><strong>⚠️ Hari Naas:</strong> <span id="shioHariNaasKedua" class="text-red-700"></span></p>
@@ -290,7 +325,7 @@
          <h3 class="text-2xl font-bold text-gray-800 text-center mb-2">Zodiak</h3>
          <p id="zodiakNameKedua" class="text-3xl font-bold text-purple-700 text-center mb-2"></p>
          <p id="zodiakDescKedua" class="text-gray-700 text-center text-base mb-2"></p>
-         <p class="text-gray-600 text-center text-sm italic mb-3">��️ <span id="zodiakNegatifKedua"></span></p>
+         <p class="text-gray-600 text-center text-sm italic mb-3">⚠️ <span id="zodiakNegatifKedua"></span></p>
          <div class="text-center text-sm">
           <p class="mb-1"><strong>🍀 Hari Hoki:</strong> <span id="zodiakHariHokiKedua" class="text-green-700"></span></p>
           <p class="mb-1"><strong>⚠️ Hari Naas:</strong> <span id="zodiakHariNaasKedua" class="text-red-700"></span></p>
@@ -319,13 +354,11 @@
          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div class="bg-purple-50 rounded-lg p-4">
            <p class="text-center font-semibold text-purple-700" id="neptuNamaPertama"></p>
-           <p class="text-center text-xs mb-1">📅 <span id="neptuTanggalPertama" class="text-gray-600"></span></p>
            <p class="text-center text-sm" id="neptuDetailPertama"></p>
            <p class="text-center text-2xl font-bold text-purple-600">Neptu: <span id="neptuValuePertama"></span></p>
           </div>
           <div class="bg-pink-50 rounded-lg p-4">
            <p class="text-center font-semibold text-pink-700" id="neptuNamaKedua"></p>
-           <p class="text-center text-xs mb-1">📅 <span id="neptuTanggalKedua" class="text-gray-600"></span></p>
            <p class="text-center text-sm" id="neptuDetailKedua"></p>
            <p class="text-center text-2xl font-bold text-pink-600">Neptu: <span id="neptuValueKedua"></span></p>
           </div>
@@ -373,862 +406,516 @@
        </div>
       </div>
      </div>
-    </div>
+    </div><!-- Footer -->
+    <footer class="text-center text-white mt-10 opacity-75">
+     <p>© 2024 Ramalan Lengkap Jawa. Dibuat dengan ❤️</p>
+    </footer>
    </div>
-  </div><!-- ============================================ --> <!-- =========== BAGIAN JAVASCRIPT ============= --> <!-- ============================================ -->
+  </div>
   <script>
-    // ========== KONFIGURASI DEFAULT ==========
-    const defaultConfig = {
-      main_title: "Ramalan Lengkap",
-      subtitle: "Shio, Unsur, Zodiak, Hari Pasaran Jawa & Numerologi Nama",
-      calculate_button: "Lihat Ramalan",
-      reset_button: "Reset",
-      background_color: "#667eea",
-      card_color: "#ffffff",
-      text_color: "#1f2937",
-      primary_button_color: "#9333ea",
-      secondary_button_color: "#6b7280",
-      font_family: "system-ui",
-      font_size: 16
-    };
+        // ========== DATA MASTER ==========
+        const shioData = {
+            0: { nama: "Monyet", icon: "🐵", deskripsi: "Cerdas, kreatif, dan suka berpetualang. Memiliki kemampuan problem solving yang baik.", negatif: "Terkadang terlalu impulsif dan kurang fokus. Bisa bersikap manipulatif dan tidak konsisten.", hariHoki: "Kamis", hariNaas: "Minggu", cocok: ["Naga", "Tikus"], bentrok: ["Macan", "Babi"] },
+            1: { nama: "Ayam", icon: "🐓", deskripsi: "Pekerja keras, teliti, dan perfeksionis. Memiliki kepercayaan diri yang tinggi.", negatif: "Cenderung kritis terhadap orang lain dan sombong. Mudah stres karena terlalu perfeksionis.", hariHoki: "Sabtu", hariNaas: "Rabu", cocok: ["Ular", "Kerbau"], bentrok: ["Kelinci", "Anjing"] },
+            2: { nama: "Anjing", icon: "🐕", deskripsi: "Setia, jujur, dan dapat diandalkan. Memiliki rasa tanggung jawab yang besar.", negatif: "Terlalu khawatir dan pesimistis. Kadang terlalu keras kepala dan sulit menerima perubahan.", hariHoki: "Minggu", hariNaas: "Kamis", cocok: ["Kuda", "Macan"], bentrok: ["Naga", "Ayam"] },
+            3: { nama: "Babi", icon: "🐷", deskripsi: "Baik hati, dermawan, dan penuh kasih sayang. Menikmati kehidupan dengan sederhana.", negatif: "Mudah dimanfaatkan karena terlalu percaya pada orang lain. Cenderung boros dan kurang waspada.", hariHoki: "Selasa", hariNaas: "Jumat", cocok: ["Kelinci", "Kambing"], bentrok: ["Ular", "Monyet"] },
+            4: { nama: "Tikus", icon: "🐭", deskripsi: "Cerdik, hemat, dan ambisius. Pandai dalam urusan finansial.", negatif: "Terlalu perhitungan dan pelit. Bisa bersikap oportunis dan egois demi kepentingan pribadi.", hariHoki: "Rabu", hariNaas: "Senin", cocok: ["Naga", "Monyet"], bentrok: ["Kuda", "Kambing"] },
+            5: { nama: "Kerbau", icon: "🐂", deskripsi: "Tekun, sabar, dan dapat dipercaya. Bekerja dengan penuh dedikasi.", negatif: "Sangat keras kepala dan sulit berkompromi. Lambat beradaptasi dengan perubahan.", hariHoki: "Jumat", hariNaas: "Sabtu", cocok: ["Ular", "Ayam"], bentrok: ["Kambing", "Kuda"] },
+            6: { nama: "Macan", icon: "🐯", deskripsi: "Berani, percaya diri, dan berjiwa pemimpin. Memiliki karisma yang kuat.", negatif: "Temperamental dan mudah marah. Terkadang agresif dan terlalu dominan.", hariHoki: "Selasa", hariNaas: "Jumat", cocok: ["Kuda", "Anjing"], bentrok: ["Monyet", "Ular"] },
+            7: { nama: "Kelinci", icon: "🐰", deskripsi: "Lembut, bijaksana, dan diplomatis. Menyukai kedamaian dan harmoni.", negatif: "Terlalu sensitif dan mudah tersinggung. Menghindari konflik hingga masalah tidak terselesaikan.", hariHoki: "Senin", hariNaas: "Minggu", cocok: ["Kambing", "Babi"], bentrok: ["Ayam", "Tikus"] },
+            8: { nama: "Naga", icon: "🐉", deskripsi: "Beruntung, kuat, dan berkarisma. Memiliki energi dan ambisi yang besar.", negatif: "Arogan dan terlalu percaya diri. Sulit menerima kritik dan bisa jadi tidak realistis.", hariHoki: "Kamis", hariNaas: "Rabu", cocok: ["Tikus", "Monyet"], bentrok: ["Anjing", "Kelinci"] },
+            9: { nama: "Ular", icon: "🐍", deskripsi: "Bijaksana, intuitif, dan misterius. Memiliki daya tarik yang kuat.", negatif: "Posesif dan pencemburu. Cenderung licik dan sulit dipercaya penuh.", hariHoki: "Rabu", hariNaas: "Kamis", cocok: ["Ayam", "Kerbau"], bentrok: ["Babi", "Macan"] },
+            10: { nama: "Kuda", icon: "🐴", deskripsi: "Energik, bebas, dan mandiri. Menyukai petualangan dan kebebasan.", negatif: "Tidak sabaran dan sering mengambil keputusan terburu-buru. Sulit berkomitmen jangka panjang.", hariHoki: "Minggu", hariNaas: "Selasa", cocok: ["Macan", "Anjing"], bentrok: ["Tikus", "Kerbau"] },
+            11: { nama: "Kambing", icon: "🐐", deskripsi: "Kreatif, artistik, dan penyayang. Memiliki jiwa yang lembut dan penuh empati.", negatif: "Terlalu bergantung pada orang lain dan mudah cemas. Pesimis dan kurang percaya diri.", hariHoki: "Sabtu", hariNaas: "Senin", cocok: ["Kelinci", "Babi"], bentrok: ["Kerbau", "Tikus"] }
+        };
 
-    // ========== DATA MASTER RAMALAN ==========
-    const shioData = {
-      0: { nama: "Monyet 🐵", deskripsi: "Cerdas, kreatif, dan suka berpetualang. Memiliki kemampuan problem solving yang baik.", negatif: "Terkadang terlalu impulsif dan kurang fokus. Bisa bersikap manipulatif dan tidak konsisten.", hariHoki: "Kamis", hariNaas: "Minggu", cocok: ["Naga", "Tikus"], bentrok: ["Macan", "Babi"] },
-      1: { nama: "Ayam 🐓", deskripsi: "Pekerja keras, teliti, dan perfeksionis. Memiliki kepercayaan diri yang tinggi.", negatif: "Cenderung kritis terhadap orang lain dan sombong. Mudah stres karena terlalu perfeksionis.", hariHoki: "Sabtu", hariNaas: "Rabu", cocok: ["Ular", "Kerbau"], bentrok: ["Kelinci", "Anjing"] },
-      2: { nama: "Anjing 🐕", deskripsi: "Setia, jujur, dan dapat diandalkan. Memiliki rasa tanggung jawab yang besar.", negatif: "Terlalu khawatir dan pesimistis. Kadang terlalu keras kepala dan sulit menerima perubahan.", hariHoki: "Minggu", hariNaas: "Kamis", cocok: ["Kuda", "Macan"], bentrok: ["Naga", "Ayam"] },
-      3: { nama: "Babi 🐷", deskripsi: "Baik hati, dermawan, dan penuh kasih sayang. Menikmati kehidupan dengan sederhana.", negatif: "Mudah dimanfaatkan karena terlalu percaya pada orang lain. Cenderung boros dan kurang waspada.", hariHoki: "Selasa", hariNaas: "Jumat", cocok: ["Kelinci", "Kambing"], bentrok: ["Ular", "Monyet"] },
-      4: { nama: "Tikus 🐭", deskripsi: "Cerdik, hemat, dan ambisius. Pandai dalam urusan finansial.", negatif: "Terlalu perhitungan dan pelit. Bisa bersikap oportunis dan egois demi kepentingan pribadi.", hariHoki: "Rabu", hariNaas: "Senin", cocok: ["Naga", "Monyet"], bentrok: ["Kuda", "Kambing"] },
-      5: { nama: "Kerbau 🐂", deskripsi: "Tekun, sabar, dan dapat dipercaya. Bekerja dengan penuh dedikasi.", negatif: "Sangat keras kepala dan sulit berkompromi. Lambat beradaptasi dengan perubahan.", hariHoki: "Jumat", hariNaas: "Sabtu", cocok: ["Ular", "Ayam"], bentrok: ["Kambing", "Kuda"] },
-      6: { nama: "Macan 🐯", deskripsi: "Berani, percaya diri, dan berjiwa pemimpin. Memiliki karisma yang kuat.", negatif: "Temperamental dan mudah marah. Terkadang agresif dan terlalu dominan.", hariHoki: "Selasa", hariNaas: "Jumat", cocok: ["Kuda", "Anjing"], bentrok: ["Monyet", "Ular"] },
-      7: { nama: "Kelinci 🐰", deskripsi: "Lembut, bijaksana, dan diplomatis. Menyukai kedamaian dan harmoni.", negatif: "Terlalu sensitif dan mudah tersinggung. Menghindari konflik hingga masalah tidak terselesaikan.", hariHoki: "Senin", hariNaas: "Minggu", cocok: ["Kambing", "Babi"], bentrok: ["Ayam", "Tikus"] },
-      8: { nama: "Naga 🐉", deskripsi: "Beruntung, kuat, dan berkarisma. Memiliki energi dan ambisi yang besar.", negatif: "Arogan dan terlalu percaya diri. Sulit menerima kritik dan bisa jadi tidak realistis.", hariHoki: "Kamis", hariNaas: "Rabu", cocok: ["Tikus", "Monyet"], bentrok: ["Anjing", "Kelinci"] },
-      9: { nama: "Ular 🐍", deskripsi: "Bijaksana, intuitif, dan misterius. Memiliki daya tarik yang kuat.", negatif: "Posesif dan pencemburu. Cenderung licik dan sulit dipercaya penuh.", hariHoki: "Rabu", hariNaas: "Kamis", cocok: ["Ayam", "Kerbau"], bentrok: ["Babi", "Macan"] },
-      10: { nama: "Kuda 🐴", deskripsi: "Energik, bebas, dan mandiri. Menyukai petualangan dan kebebasan.", negatif: "Tidak sabaran dan sering mengambil keputusan terburu-buru. Sulit berkomitmen jangka panjang.", hariHoki: "Minggu", hariNaas: "Selasa", cocok: ["Macan", "Anjing"], bentrok: ["Tikus", "Kerbau"] },
-      11: { nama: "Kambing 🐐", deskripsi: "Kreatif, artistik, dan penyayang. Memiliki jiwa yang lembut dan penuh empati.", negatif: "Terlalu bergantung pada orang lain dan mudah cemas. Pesimis dan kurang percaya diri.", hariHoki: "Sabtu", hariNaas: "Senin", cocok: ["Kelinci", "Babi"], bentrok: ["Kerbau", "Tikus"] }
-    };
+        const unsurData = {
+            "Kayu": { icon: "🌳", deskripsi: "Melambangkan pertumbuhan, kreativitas, dan fleksibilitas. Pribadi yang visioner dan inovatif.", negatif: "Kurang stabil dan mudah terpengaruh. Sulit membuat keputusan tegas." },
+            "Api": { icon: "🔥", deskripsi: "Melambangkan passion, energi, dan transformasi. Pribadi yang dinamis dan penuh semangat.", negatif: "Temperamental dan mudah terbakar emosi. Tidak sabaran dan impulsif." },
+            "Tanah": { icon: "⛰️", deskripsi: "Melambangkan stabilitas, kepraktisan, dan keandalan. Pribadi yang membumi dan dapat diandalkan.", negatif: "Terlalu kaku dan sulit beradaptasi. Cenderung pesimis dan terlalu hati-hati." },
+            "Logam": { icon: "⚙️", deskripsi: "Melambangkan kekuatan, ketegasan, dan struktur. Pribadi yang disiplin dan terorganisir.", negatif: "Keras kepala dan tidak fleksibel. Terlalu kritis dan dingin dalam berhubungan." },
+            "Air": { icon: "💧", deskripsi: "Melambangkan fleksibilitas, intuisi, dan kebijaksanaan. Pribadi yang adaptif dan empatik.", negatif: "Terlalu pasif dan mudah mengalah. Kurang tegas dalam mengambil sikap." }
+        };
 
-    const unsurData = {
-      "Kayu": { icon: "🌳", deskripsi: "Melambangkan pertumbuhan, kreativitas, dan fleksibilitas. Pribadi yang visioner dan inovatif.", negatif: "Kurang stabil dan mudah terpengaruh. Sulit membuat keputusan tegas." },
-      "Api": { icon: "🔥", deskripsi: "Melambangkan passion, energi, dan transformasi. Pribadi yang dinamis dan penuh semangat.", negatif: "Temperamental dan mudah terbakar emosi. Tidak sabaran dan impulsif." },
-      "Tanah": { icon: "⛰️", deskripsi: "Melambangkan stabilitas, kepraktisan, dan keandalan. Pribadi yang membumi dan dapat diandalkan.", negatif: "Terlalu kaku dan sulit beradaptasi. Cenderung pesimis dan terlalu hati-hati." },
-      "Logam": { icon: "⚙️", deskripsi: "Melambangkan kekuatan, ketegasan, dan struktur. Pribadi yang disiplin dan terorganisir.", negatif: "Keras kepala dan tidak fleksibel. Terlalu kritis dan dingin dalam berhubungan." },
-      "Air": { icon: "💧", deskripsi: "Melambangkan fleksibilitas, intuisi, dan kebijaksanaan. Pribadi yang adaptif dan empatik.", negatif: "Terlalu pasif dan mudah mengalah. Kurang tegas dalam mengambil sikap." }
-    };
+        const zodiakData = [
+            { nama: "Capricorn ♑", icon: "🐐", tanggal: [12, 22, 1, 19], deskripsi: "Ambisius, disiplin, dan bertanggung jawab. Pekerja keras yang tekun.", negatif: "Terlalu serius dan workaholic. Sulit mengekspresikan emosi dan kaku.", hariHoki: "Sabtu", hariNaas: "Senin", cocok: ["Taurus", "Virgo"], bentrok: ["Aries", "Cancer"] },
+            { nama: "Aquarius ♒", icon: "💧", tanggal: [1, 20, 2, 18], deskripsi: "Independen, humanis, dan inovatif. Pemikir yang original.", negatif: "Terlalu dingin dan tidak emosional. Sulit memahami perasaan orang lain.", hariHoki: "Minggu", hariNaas: "Jumat", cocok: ["Gemini", "Libra"], bentrok: ["Taurus", "Leo"] },
+            { nama: "Pisces ♓", icon: "🐟", tanggal: [2, 19, 3, 20], deskripsi: "Intuitif, artistik, dan penuh empati. Jiwa yang lembut dan romantis.", negatif: "Terlalu sensitif dan mudah terpengaruh. Suka melarikan diri dari realitas.", hariHoki: "Kamis", hariNaas: "Rabu", cocok: ["Cancer", "Scorpio"], bentrok: ["Gemini", "Virgo"] },
+            { nama: "Aries ♈", icon: "🐏", tanggal: [3, 21, 4, 19], deskripsi: "Berani, energik, dan penuh inisiatif. Pemimpin yang percaya diri.", negatif: "Impulsif dan mudah marah. Egois dan tidak sabaran.", hariHoki: "Selasa", hariNaas: "Sabtu", cocok: ["Leo", "Sagittarius"], bentrok: ["Cancer", "Capricorn"] },
+            { nama: "Taurus ♉", icon: "🐂", tanggal: [4, 20, 5, 20], deskripsi: "Stabil, praktis, dan dapat diandalkan. Menyukai kenyamanan dan keindahan.", negatif: "Sangat keras kepala dan materialistis. Sulit menerima perubahan.", hariHoki: "Jumat", hariNaas: "Selasa", cocok: ["Virgo", "Capricorn"], bentrok: ["Leo", "Aquarius"] },
+            { nama: "Gemini ♊", icon: "👯", tanggal: [5, 21, 6, 20], deskripsi: "Komunikatif, adaptif, dan cerdas. Pribadi yang penuh rasa ingin tahu.", negatif: "Tidak konsisten dan mudah bosan. Cenderung superfisial dan tidak fokus.", hariHoki: "Rabu", hariNaas: "Kamis", cocok: ["Libra", "Aquarius"], bentrok: ["Virgo", "Pisces"] },
+            { nama: "Cancer ♋", icon: "🦀", tanggal: [6, 21, 7, 22], deskripsi: "Penuh perhatian, protektif, dan intuitif. Sangat menghargai keluarga.", negatif: "Terlalu sensitif dan mudah tersinggung. Mood yang tidak stabil dan posesif.", hariHoki: "Senin", hariNaas: "Sabtu", cocok: ["Scorpio", "Pisces"], bentrok: ["Aries", "Capricorn"] },
+            { nama: "Leo ♌", icon: "🦁", tanggal: [7, 23, 8, 22], deskripsi: "Percaya diri, murah hati, dan kreatif. Pemimpin yang karismatik.", negatif: "Arogan dan suka menjadi pusat perhatian. Sulit menerima kritik.", hariHoki: "Minggu", hariNaas: "Rabu", cocok: ["Aries", "Sagittarius"], bentrok: ["Taurus", "Aquarius"] },
+            { nama: "Virgo ♍", icon: "👧", tanggal: [8, 23, 9, 22], deskripsi: "Analitis, perfeksionis, dan pekerja keras. Perhatian pada detail.", negatif: "Terlalu kritis dan perfeksionis. Cenderung khawatir berlebihan dan perhitungan.", hariHoki: "Rabu", hariNaas: "Kamis", cocok: ["Taurus", "Capricorn"], bentrok: ["Gemini", "Pisces"] },
+            { nama: "Libra ♎", icon: "⚖️", tanggal: [9, 23, 10, 22], deskripsi: "Diplomatis, adil, dan harmonis. Menyukai keseimbangan dan keindahan.", negatif: "Ragu-ragu dan sulit membuat keputusan. Terlalu bergantung pada orang lain.", hariHoki: "Jumat", hariNaas: "Selasa", cocok: ["Gemini", "Aquarius"], bentrok: ["Cancer", "Capricorn"] },
+            { nama: "Scorpio ♏", icon: "🦂", tanggal: [10, 23, 11, 21], deskripsi: "Intens, passionate, dan misterius. Memiliki kekuatan emosional yang dalam.", negatif: "Posesif dan pencemburu. Mudah dendam dan manipulatif.", hariHoki: "Selasa", hariNaas: "Minggu", cocok: ["Cancer", "Pisces"], bentrok: ["Leo", "Aquarius"] },
+            { nama: "Sagittarius ♐", icon: "🏹", tanggal: [11, 22, 12, 21], deskripsi: "Optimis, petualang, dan filosofis. Mencintai kebebasan dan pembelajaran.", negatif: "Tidak bertanggung jawab dan ceroboh. Terlalu blunt dan sulit berkomitmen.", hariHoki: "Kamis", hariNaas: "Jumat", cocok: ["Aries", "Leo"], bentrok: ["Virgo", "Pisces"] }
+        ];
 
-    const zodiakData = [
-      { nama: "Capricorn ♑", icon: "🐐", tanggal: [12, 22, 1, 19], deskripsi: "Ambisius, disiplin, dan bertanggung jawab. Pekerja keras yang tekun.", negatif: "Terlalu serius dan workaholic. Sulit mengekspresikan emosi dan kaku.", hariHoki: "Sabtu", hariNaas: "Senin", cocok: ["Taurus", "Virgo"], bentrok: ["Aries", "Cancer"] },
-      { nama: "Aquarius ♒", icon: "💧", tanggal: [1, 20, 2, 18], deskripsi: "Independen, humanis, dan inovatif. Pemikir yang original.", negatif: "Terlalu dingin dan tidak emosional. Sulit memahami perasaan orang lain.", hariHoki: "Minggu", hariNaas: "Jumat", cocok: ["Gemini", "Libra"], bentrok: ["Taurus", "Leo"] },
-      { nama: "Pisces ♓", icon: "🐟", tanggal: [2, 19, 3, 20], deskripsi: "Intuitif, artistik, dan penuh empati. Jiwa yang lembut dan romantis.", negatif: "Terlalu sensitif dan mudah terpengaruh. Suka melarikan diri dari realitas.", hariHoki: "Kamis", hariNaas: "Rabu", cocok: ["Cancer", "Scorpio"], bentrok: ["Gemini", "Virgo"] },
-      { nama: "Aries ♈", icon: "🐐", tanggal: [3, 21, 4, 19], deskripsi: "Berani, energik, dan penuh inisiatif. Pemimpin yang percaya diri.", negatif: "Impulsif dan mudah marah. Egois dan tidak sabaran.", hariHoki: "Selasa", hariNaas: "Sabtu", cocok: ["Leo", "Sagittarius"], bentrok: ["Cancer", "Capricorn"] },
-      { nama: "Taurus ♉", icon: "🐂", tanggal: [4, 20, 5, 20], deskripsi: "Stabil, praktis, dan dapat diandalkan. Menyukai kenyamanan dan keindahan.", negatif: "Sangat keras kepala dan materialistis. Sulit menerima perubahan.", hariHoki: "Jumat", hariNaas: "Selasa", cocok: ["Virgo", "Capricorn"], bentrok: ["Leo", "Aquarius"] },
-      { nama: "Gemini ♊", icon: "👯", tanggal: [5, 21, 6, 20], deskripsi: "Komunikatif, adaptif, dan cerdas. Pribadi yang penuh rasa ingin tahu.", negatif: "Tidak konsisten dan mudah bosan. Cenderung superfisial dan tidak fokus.", hariHoki: "Rabu", hariNaas: "Kamis", cocok: ["Libra", "Aquarius"], bentrok: ["Virgo", "Pisces"] },
-      { nama: "Cancer ♋", icon: "🦀", tanggal: [6, 21, 7, 22], deskripsi: "Penuh perhatian, protektif, dan intuitif. Sangat menghargai keluarga.", negatif: "Terlalu sensitif dan mudah tersinggung. Mood yang tidak stabil dan posesif.", hariHoki: "Senin", hariNaas: "Sabtu", cocok: ["Scorpio", "Pisces"], bentrok: ["Aries", "Capricorn"] },
-      { nama: "Leo ♌", icon: "🦁", tanggal: [7, 23, 8, 22], deskripsi: "Percaya diri, murah hati, dan kreatif. Pemimpin yang karismatik.", negatif: "Arogan dan suka menjadi pusat perhatian. Sulit menerima kritik.", hariHoki: "Minggu", hariNaas: "Rabu", cocok: ["Aries", "Sagittarius"], bentrok: ["Taurus", "Aquarius"] },
-      { nama: "Virgo ♍", icon: "👧", tanggal: [8, 23, 9, 22], deskripsi: "Analitis, perfeksionis, dan pekerja keras. Perhatian pada detail.", negatif: "Terlalu kritis dan perfeksionis. Cenderung khawatir berlebihan dan perhitungan.", hariHoki: "Rabu", hariNaas: "Kamis", cocok: ["Taurus", "Capricorn"], bentrok: ["Gemini", "Pisces"] },
-      { nama: "Libra ♎", icon: "⚖️", tanggal: [9, 23, 10, 22], deskripsi: "Diplomatis, adil, dan harmonis. Menyukai keseimbangan dan keindahan.", negatif: "Ragu-ragu dan sulit membuat keputusan. Terlalu bergantung pada orang lain.", hariHoki: "Jumat", hariNaas: "Selasa", cocok: ["Gemini", "Aquarius"], bentrok: ["Cancer", "Capricorn"] },
-      { nama: "Scorpio ♏", icon: "🦂", tanggal: [10, 23, 11, 21], deskripsi: "Intens, passionate, dan misterius. Memiliki kekuatan emosional yang dalam.", negatif: "Posesif dan pencemburu. Mudah dendam dan manipulatif.", hariHoki: "Selasa", hariNaas: "Minggu", cocok: ["Cancer", "Pisces"], bentrok: ["Leo", "Aquarius"] },
-      { nama: "Sagittarius ♐", icon: "🏹", tanggal: [11, 22, 12, 21], deskripsi: "Optimis, petualang, dan filosofis. Mencintai kebebasan dan pembelajaran.", negatif: "Tidak bertanggung jawab dan ceroboh. Terlalu blunt dan sulit berkomitmen.", hariHoki: "Kamis", hariNaas: "Jumat", cocok: ["Aries", "Leo"], bentrok: ["Virgo", "Pisces"] }
-    ];
+        const pasaranData = {
+            "Legi": { icon: "🌙", deskripsi: "Lembut, sabar, dan bijaksana. Memiliki inner strength yang kuat.", negatif: "Terlalu pasif dan mudah dimanfaatkan. Sulit mengambil keputusan tegas.", neptu: 5 },
+            "Pahing": { icon: "🔥", deskripsi: "Penuh semangat, berani, dan tegas. Memiliki jiwa kepemimpinan.", negatif: "Temperamental dan suka mendominasi. Kurang sabar dengan orang lain.", neptu: 9 },
+            "Pon": { icon: "💎", deskripsi: "Berkepribadian mulia, bijaksana, dan beruntung. Suka menolong.", negatif: "Terlalu perfeksionis dan kritis. Bisa jadi arogan karena merasa superior.", neptu: 7 },
+            "Wage": { icon: "⭐", deskripsi: "Ramah, mudah bergaul, dan penuh kasih sayang. Disenangi banyak orang.", negatif: "Terlalu bergantung pada validasi orang lain. Sulit mengatakan tidak.", neptu: 4 },
+            "Kliwon": { icon: "🌟", deskripsi: "Spiritual, misterius, dan berkarisma. Memiliki intuisi yang tajam.", negatif: "Terlalu misterius dan tertutup. Sulit dipahami dan sering menyendiri.", neptu: 8 }
+        };
 
-    const pasaranData = {
-      "Legi": { icon: "🌙", deskripsi: "Lembut, sabar, dan bijaksana. Memiliki inner strength yang kuat.", negatif: "Terlalu pasif dan mudah dimanfaatkan. Sulit mengambil keputusan tegas.", neptu: 5 },
-      "Pahing": { icon: "🔥", deskripsi: "Penuh semangat, berani, dan tegas. Memiliki jiwa kepemimpinan.", negatif: "Temperamental dan suka mendominasi. Kurang sabar dengan orang lain.", neptu: 9 },
-      "Pon": { icon: "💎", deskripsi: "Berkepribadian mulia, bijaksana, dan beruntung. Suka menolong.", negatif: "Terlalu perfeksionis dan kritis. Bisa jadi arogan karena merasa superior.", neptu: 7 },
-      "Wage": { icon: "⭐", deskripsi: "Ramah, mudah bergaul, dan penuh kasih sayang. Disenangi banyak orang.", negatif: "Terlalu bergantung pada validasi orang lain. Sulit mengatakan tidak.", neptu: 4 },
-      "Kliwon": { icon: "🌟", deskripsi: "Spiritual, misterius, dan berkarisma. Memiliki intuisi yang tajam.", negatif: "Terlalu misterius dan tertutup. Sulit dipahami dan sering menyendiri.", neptu: 8 }
-    };
+        const neptuHari = { 0: 5, 1: 4, 2: 3, 3: 7, 4: 8, 5: 6, 6: 9 };
+        const namaHari = { 0: "Minggu", 1: "Senin", 2: "Selasa", 3: "Rabu", 4: "Kamis", 5: "Jumat", 6: "Sabtu" };
+        const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        const namaBulanHijriah = ["", "Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir", "Jumadil Awal", "Jumadil Akhir", "Rajab", "Sya'ban", "Ramadan", "Syawal", "Dzulqaidah", "Dzulhijjah"];
 
-    // Data Neptu Hari (Primbon Jawa)
-    const neptuHari = {
-      0: 5, // Minggu
-      1: 4, // Senin
-      2: 3, // Selasa
-      3: 7, // Rabu
-      4: 8, // Kamis
-      5: 6, // Jumat
-      6: 9  // Sabtu
-    };
+        const watakNeptu = {
+            7: { nama: "Sri", watak: "Beruntung dalam rezeki, mudah mendapat kebahagiaan hidup", sifat: "Dermawan, penyayang, suka menolong", negatif: "Terlalu boros, kurang waspada" },
+            8: { nama: "Lungguh", watak: "Disegani dan dihormati, memiliki wibawa tinggi", sifat: "Bijaksana, tenang, berkharisma", negatif: "Terlalu serius, kaku dalam pergaulan" },
+            9: { nama: "Dewa/Kutug", watak: "Beruntung dan diberkahi, tetapi juga mudah mendapat cobaan", sifat: "Spiritual, intuitif, kuat mental", negatif: "Mudah kesepian, sulit dipahami" },
+            10: { nama: "Jangkung", watak: "Baik hati dan penyayang, namun kurang stabil", sifat: "Ramah, mudah bergaul, periang", negatif: "Tidak konsisten, mudah terpengaruh" },
+            11: { nama: "Watu Gunung", watak: "Kokoh dan kuat seperti batu gunung, pekerja keras", sifat: "Tekun, sabar, tidak mudah menyerah", negatif: "Keras kepala, sulit berubah" },
+            12: { nama: "Lintah", watak: "Ulet dan gigih dalam usaha, tidak mudah putus asa", sifat: "Pantang menyerah, rajin, teliti", negatif: "Terlalu perhitungan, pelit" },
+            13: { nama: "Sapi Gumarang", watak: "Pekerja keras dan dapat diandalkan, namun kurang peruntungan", sifat: "Bertanggung jawab, jujur, setia", negatif: "Sering kelelahan, kurang beruntung" },
+            14: { nama: "Bumi", watak: "Membumi dan stabil, cocok untuk usaha jangka panjang", sifat: "Praktis, realistis, dapat dipercaya", negatif: "Kurang inovatif, terlalu hati-hati" },
+            15: { nama: "Guru/Gaib", watak: "Memiliki kemampuan spiritual, sering mendapat petunjuk gaib", sifat: "Bijaksana, visioner, memiliki firasat kuat", negatif: "Terlalu mistis, sulit dijelaskan logika" },
+            16: { nama: "Geni/Api", watak: "Berapi-api dan penuh semangat, pemimpin alami", sifat: "Berani, tegas, penuh energi", negatif: "Temperamental, mudah marah" },
+            17: { nama: "Jin Pambeleng", watak: "Kuat mental namun sering mendapat gangguan halus", sifat: "Kuat, tangguh, tidak mudah menyerah", negatif: "Sering sakit-sakitan, mimpi buruk" }
+        };
 
-    const namaHari = {
-      0: "Minggu",
-      1: "Senin",
-      2: "Selasa",
-      3: "Rabu",
-      4: "Kamis",
-      5: "Jumat",
-      6: "Sabtu"
-    };
+        const watakPerjodohan = {
+            0: { nama: "Pegat", tingkat: "Sangat Kurang Baik", deskripsi: "Rawan terjadi perpisahan atau perceraian. Banyak pertengkaran dan ketidakcocokan.", saran: "Butuh komitmen sangat kuat dan kesabaran luar biasa. Perbanyak komunikasi dan saling pengertian." },
+            1: { nama: "Ratu", tingkat: "Sangat Baik", deskripsi: "Pasangan yang mulia dan saling menghormati. Disegani lingkungan sekitar.", saran: "Pertahankan saling menghargai. Jadilah teladan bagi pasangan lain." },
+            2: { nama: "Jodoh", tingkat: "Sangat Baik", deskripsi: "Benar-benar jodoh. Sangat cocok dan harmonis dalam segala hal.", saran: "Syukuri keberuntungan ini. Jaga selalu komunikasi dan kepercayaan." },
+            3: { nama: "Topo", tingkat: "Cukup Baik", deskripsi: "Awalnya sulit, namun akan bahagia di akhir. Butuh perjuangan.", saran: "Bersabar dan tetap bertahan. Kebahagiaan akan datang seiring waktu." },
+            4: { nama: "Tinari", tingkat: "Baik", deskripsi: "Hidup bahagia dan berkecukupan. Rezeki lancar.", saran: "Kelola keuangan dengan baik. Tetap rendah hati meski beruntung." },
+            5: { nama: "Padu", tingkat: "Kurang Baik", deskripsi: "Sering bertengkar namun tidak sampai bercerai. Hubungan bertahan.", saran: "Belajar mengendalikan emosi. Cari cara untuk saling memahami." },
+            6: { nama: "Sujanan", tingkat: "Perlu Perhatian", deskripsi: "Rawan perselingkuhan dan godaan dari luar.", saran: "Jaga komitmen dan loyalitas. Hindari situasi yang memicu godaan." },
+            7: { nama: "Pesthi", tingkat: "Sangat Baik", deskripsi: "Rukun dan harmonis hingga tua. Jarang ada masalah besar.", saran: "Terus jaga keharmonisan. Saling support dalam suka dan duka." },
+            8: { nama: "Pangkat", tingkat: "Baik", deskripsi: "Naik pangkat dan kedudukan. Mendapat kehormatan.", saran: "Manfaatkan kesuksesan untuk hal positif. Jangan sombong." },
+            9: { nama: "Manis", tingkat: "Baik", deskripsi: "Hubungan manis dan menyenangkan. Penuh kasih sayang.", saran: "Jaga romantisme. Terus ekspresikan cinta dan perhatian." }
+        };
 
-    // Data Watak berdasarkan Total Neptu (Hari + Pasaran)
-    const watakNeptu = {
-      7: { nama: "Sri", watak: "Beruntung dalam rezeki, mudah mendapat kebahagiaan hidup", sifat: "Dermawan, penyayang, suka menolong", negatif: "Terlalu boros, kurang waspada" },
-      8: { nama: "Lungguh", watak: "Disegani dan dihormati, memiliki wibawa tinggi", sifat: "Bijaksana, tenang, berkharisma", negatif: "Terlalu serius, kaku dalam pergaulan" },
-      9: { nama: "Dewa/Kutug", watak: "Beruntung dan diberkahi, tetapi juga mudah mendapat cobaan", sifat: "Spiritual, intuitif, kuat mental", negatif: "Mudah kesepian, sulit dipahami" },
-      10: { nama: "Jangkung", watak: "Baik hati dan penyayang, namun kurang stabil", sifat: "Ramah, mudah bergaul, periang", negatif: "Tidak konsisten, mudah terpengaruh" },
-      11: { nama: "Watu Gunung", watak: "Kokoh dan kuat seperti batu gunung, pekerja keras", sifat: "Tekun, sabar, tidak mudah menyerah", negatif: "Keras kepala, sulit berubah" },
-      12: { nama: "Lintah", watak: "Ulet dan gigih dalam usaha, tidak mudah putus asa", sifat: "Pantang menyerah, rajin, teliti", negatif: "Terlalu perhitungan, pelit" },
-      13: { nama: "Sapi Gumarang", watak: "Pekerja keras dan dapat diandalkan, namun kurang peruntungan", sifat: "Bertanggung jawab, jujur, setia", negatif: "Sering kelelahan, kurang beruntung" },
-      14: { nama: "Bumi", watak: "Membumi dan stabil, cocok untuk usaha jangka panjang", sifat: "Praktis, realistis, dapat dipercaya", negatif: "Kurang inovatif, terlalu hati-hati" },
-      15: { nama: "Guru/Gaib", watak: "Memiliki kemampuan spiritual, sering mendapat petunjuk gaib", sifat: "Bijaksana, visioner, memiliki firasat kuat", negatif: "Terlalu mistis, sulit dijelaskan logika" },
-      16: { nama: "Geni/Api", watak: "Berapi-api dan penuh semangat, pemimpin alami", sifat: "Berani, tegas, penuh energi", negatif: "Temperamental, mudah marah" },
-      17: { nama: "Jin Pambeleng", watak: "Kuat mental namun sering mendapat gangguan halus", sifat: "Kuat, tangguh, tidak mudah menyerah", negatif: "Sering sakit-sakitan, mimpi buruk" }
-    };
+        const dataNumerologi = {
+            1: { deskripsi: "Pemimpin alami, mandiri, dan inovatif. Memiliki ambisi dan determinasi yang kuat.", negatif: "Egois dan dominan. Sulit bekerja dalam tim dan tidak mau mendengarkan." },
+            2: { deskripsi: "Diplomatis, kooperatif, dan sensitif. Mahir dalam membangun hubungan.", negatif: "Terlalu sensitif dan bergantung pada orang lain. Sulit membuat keputusan sendiri." },
+            3: { deskripsi: "Kreatif, ekspresif, dan optimis. Memiliki bakat komunikasi yang baik.", negatif: "Tidak fokus dan superfisial. Cenderung berlebihan dan kurang disiplin." },
+            4: { deskripsi: "Praktis, terorganisir, dan dapat diandalkan. Pekerja keras yang tekun.", negatif: "Terlalu kaku dan tidak fleksibel. Sulit menerima perubahan dan ide baru." },
+            5: { deskripsi: "Adventurous, bebas, dan dinamis. Menyukai perubahan dan pengalaman baru.", negatif: "Tidak bertanggung jawab dan impulsif. Sulit berkomitmen jangka panjang." },
+            6: { deskripsi: "Bertanggung jawab, penuh kasih, dan harmonis. Sangat peduli dengan keluarga.", negatif: "Terlalu mengontrol dan perfeksionis. Sulit melepaskan dan selalu khawatir." },
+            7: { deskripsi: "Analitis, spiritual, dan bijaksana. Pencari kebenaran dan pengetahuan.", negatif: "Terlalu kritis dan tertutup. Sulit membuka diri dan berbagi emosi." },
+            8: { deskripsi: "Ambisius, sukses, dan berpengaruh. Pandai dalam urusan bisnis.", negatif: "Materialistis dan workaholic. Mengabaikan aspek spiritual dan keluarga." },
+            9: { deskripsi: "Humanis, idealis, dan dermawan. Memiliki visi global dan empati tinggi.", negatif: "Terlalu idealis dan tidak realistis. Mudah kecewa dan sering mengabaikan diri sendiri." }
+        };
 
-    // Watak Perjodohan berdasarkan Selisih Neptu
-    const watakPerjodohan = {
-      0: { nama: "Pegat", tingkat: "Sangat Kurang Baik", deskripsi: "Rawan terjadi perpisahan atau perceraian. Banyak pertengkaran dan ketidakcocokan.", saran: "Butuh komitmen sangat kuat dan kesabaran luar biasa. Perbanyak komunikasi dan saling pengertian." },
-      1: { nama: "Ratu", tingkat: "Sangat Baik", deskripsi: "Pasangan yang mulia dan saling menghormati. Disegani lingkungan sekitar.", saran: "Pertahankan saling menghargai. Jadilah teladan bagi pasangan lain." },
-      2: { nama: "Jodoh", tingkat: "Sangat Baik", deskripsi: "Benar-benar jodoh. Sangat cocok dan harmonis dalam segala hal.", saran: "Syukuri keberuntungan ini. Jaga selalu komunikasi dan kepercayaan." },
-      3: { nama: "Topo", tingkat: "Cukup Baik", deskripsi: "Awalnya sulit, namun akan bahagia di akhir. Butuh perjuangan.", saran: "Bersabar dan tetap bertahan. Kebahagiaan akan datang seiring waktu." },
-      4: { nama: "Tinari", tingkat: "Baik", deskripsi: "Hidup bahagia dan berkecukupan. Rezeki lancar.", saran: "Kelola keuangan dengan baik. Tetap rendah hati meski beruntung." },
-      5: { nama: "Padu", tingkat: "Kurang Baik", deskripsi: "Sering bertengkar namun tidak sampai bercerai. Hubungan bertahan.", saran: "Belajar mengendalikan emosi. Cari cara untuk saling memahami." },
-      6: { nama: "Sujanan", tingkat: "Perlu Perhatian", deskripsi: "Rawan perselingkuhan dan godaan dari luar.", saran: "Jaga komitmen dan loyalitas. Hindari situasi yang memicu godaan." },
-      7: { nama: "Pesthi", tingkat: "Sangat Baik", deskripsi: "Rukun dan harmonis hingga tua. Jarang ada masalah besar.", saran: "Terus jaga keharmonisan. Saling support dalam suka dan duka." },
-      8: { nama: "Pangkat", tingkat: "Baik", deskripsi: "Naik pangkat dan kedudukan. Mendapat kehormatan.", saran: "Manfaatkan kesuksesan untuk hal positif. Jangan sombong." },
-      9: { nama: "Manis", tingkat: "Baik", deskripsi: "Hubungan manis dan menyenangkan. Penuh kasih sayang.", saran: "Jaga romantisme. Terus ekspresikan cinta dan perhatian." }
-    };
+        // ========== FUNGSI KONVERSI HIJRIAH ==========
+        function gregorianToHijri(day, month, year) {
+            // Algoritma konversi Gregorian ke Hijriah
+            let a = Math.floor((11 * year + 3) / 30);
+            let b = Math.floor((month - 1) * 30.5);
+            let jd = Math.floor(365.25 * (year + 4716)) + b + day - 1524;
+            
+            let l = jd - 1948440 + 10632;
+            let n = Math.floor((l - 1) / 10631);
+            l = l - 10631 * n + 354;
+            let j = (Math.floor((10985 - l) / 5316)) * (Math.floor((50 * l) / 17719)) + (Math.floor(l / 5670)) * (Math.floor((43 * l) / 15238));
+            l = l - (Math.floor((30 - j) / 15)) * (Math.floor((17719 * j) / 50)) - (Math.floor(j / 16)) * (Math.floor((15238 * j) / 43)) + 29;
+            
+            let hijriMonth = Math.floor((24 * l) / 709);
+            let hijriDay = l - Math.floor((709 * hijriMonth) / 24);
+            let hijriYear = 30 * n + j - 30;
 
-    // Data Hasil Weton Jodoh
-    const wetonJodohData = {
-      "Jodoh": { 
-        sisa: [3], 
-        deskripsi: "Sangat cocok dan harmonis. Saling menerima kelebihan dan kekurangan. Hubungan penuh cinta dan pengertian.",
-        tingkat: "Sangat Baik",
-        skor: 95
-      },
-      "Ratu": { 
-        sisa: [2], 
-        deskripsi: "Pasangan yang saling menghargai dan menyegani. Dihormati lingkungan sekitar. Hubungan yang terhormat.",
-        tingkat: "Sangat Baik",
-        skor: 90
-      },
-      "Pethi": { 
-        sisa: [8, 0], 
-        deskripsi: "Rukun dan tenteram hingga hari tua. Jarang bertengkar, saling mendukung dalam suka dan duka.",
-        tingkat: "Sangat Baik",
-        skor: 92
-      },
-      "Tinari": { 
-        sisa: [5], 
-        deskripsi: "Hidup bahagia dan penuh keberuntungan. Rezeki lancar dan mudah datang. Selalu ceria dalam menghadapi hidup.",
-        tingkat: "Baik",
-        skor: 85
-      },
-      "Tunggak Semi": { 
-        sisa: [2], 
-        deskripsi: "Mudah mendapat sandang pangan. Tidak pernah kekurangan kebutuhan pokok. Kehidupan yang cukup.",
-        tingkat: "Baik",
-        skor: 80
-      },
-      "Sumur Sinaba": { 
-        sisa: [3], 
-        deskripsi: "Menjadi panutan dan teladan di lingkungan. Berwibawa dan dihormati masyarakat.",
-        tingkat: "Baik",
-        skor: 82
-      },
-      "Topo": { 
-        sisa: [4], 
-        deskripsi: "Awal pernikahan penuh tantangan, namun akan bahagia di kemudian hari. Butuh kesabaran ekstra.",
-        tingkat: "Cukup",
-        skor: 65
-      },
-      "Padu": { 
-        sisa: [6], 
-        deskripsi: "Sering terjadi pertengkaran kecil, namun tidak sampai bercerai. Tetap bertahan dalam hubungan.",
-        tingkat: "Cukup",
-        skor: 60
-      },
-      "Sujanan": { 
-        sisa: [7, 0], 
-        deskripsi: "Perlu waspada terhadap godaan perselingkuhan dan pertengkaran. Butuh komitmen kuat dari kedua pihak.",
-        tingkat: "Perlu Perhatian",
-        skor: 50
-      },
-      "Bumi Kapetak": { 
-        sisa: [5], 
-        deskripsi: "Butuh kerja keras untuk mencapai kesuksesan. Banyak cobaan namun bisa diatasi dengan tekad kuat.",
-        tingkat: "Perlu Perhatian",
-        skor: 55
-      },
-      "Satria Wirang": { 
-        sisa: [4], 
-        deskripsi: "Kemungkinan mengalami penderitaan atau aib. Perlu kewaspadaan tinggi dan saling support.",
-        tingkat: "Perlu Perhatian",
-        skor: 45
-      },
-      "Pegat": { 
-        sisa: [1, 9, 10], 
-        deskripsi: "Rawan masalah ekonomi dan perselingkuhan yang bisa berujung perceraian. Butuh komitmen luar biasa kuat.",
-        tingkat: "Kurang Baik",
-        skor: 35
-      },
-      "Lebu Ketiup Angin": { 
-        sisa: [6], 
-        deskripsi: "Banyak halangan dan rintangan dalam perjalanan rumah tangga. Perlu kesabaran dan doa.",
-        tingkat: "Kurang Baik",
-        skor: 40
-      }
-    };
-
-    const numerologiData = {
-      1: { deskripsi: "Pemimpin alami, mandiri, dan inovatif. Memiliki ambisi dan determinasi yang kuat.", negatif: "Egois dan dominan. Sulit bekerja dalam tim dan tidak mau mendengarkan." },
-      2: { deskripsi: "Diplomatis, kooperatif, dan sensitif. Mahir dalam membangun hubungan.", negatif: "Terlalu sensitif dan bergantung pada orang lain. Sulit membuat keputusan sendiri." },
-      3: { deskripsi: "Kreatif, ekspresif, dan optimis. Memiliki bakat komunikasi yang baik.", negatif: "Tidak fokus dan superfisial. Cenderung berlebihan dan kurang disiplin." },
-      4: { deskripsi: "Praktis, terorganisir, dan dapat diandalkan. Pekerja keras yang tekun.", negatif: "Terlalu kaku dan tidak fleksibel. Sulit menerima perubahan dan ide baru." },
-      5: { deskripsi: "Adventurous, bebas, dan dinamis. Menyukai perubahan dan pengalaman baru.", negatif: "Tidak bertanggung jawab dan impulsif. Sulit berkomitmen jangka panjang." },
-      6: { deskripsi: "Bertanggung jawab, penuh kasih, dan harmonis. Sangat peduli dengan keluarga.", negatif: "Terlalu mengontrol dan perfeksionis. Sulit melepaskan dan selalu khawatir." },
-      7: { deskripsi: "Analitis, spiritual, dan bijaksana. Pencari kebenaran dan pengetahuan.", negatif: "Terlalu kritis dan tertutup. Sulit membuka diri dan berbagi emosi." },
-      8: { deskripsi: "Ambisius, sukses, dan berpengaruh. Pandai dalam urusan bisnis.", negatif: "Materialistis dan workaholic. Mengabaikan aspek spiritual dan keluarga." },
-      9: { deskripsi: "Humanis, idealis, dan dermawan. Memiliki visi global dan empati tinggi.", negatif: "Terlalu idealis dan tidak realistis. Mudah kecewa dan sering mengabaikan diri sendiri." }
-    };
-
-    // ========== FUNGSI-FUNGSI PERHITUNGAN ==========
-    
-    function hitungShio(tahun) {
-      const sisa = tahun % 12;
-      return shioData[sisa];
-    }
-
-    function hitungUnsur(tahun) {
-      const unsurList = ["Logam", "Air", "Kayu", "Api", "Tanah"];
-      const digit = tahun % 10;
-      const index = Math.floor(digit / 2);
-      const unsurNama = unsurList[index];
-      return { nama: unsurNama, ...unsurData[unsurNama] };
-    }
-
-    function hitungZodiak(tanggal, bulan) {
-      for (let zodiak of zodiakData) {
-        const [bulan1, tgl1, bulan2, tgl2] = zodiak.tanggal;
-        if ((bulan === bulan1 && tanggal >= tgl1) || (bulan === bulan2 && tanggal <= tgl2)) {
-          return zodiak;
-        }
-      }
-      return zodiakData[0];
-    }
-
-    function hitungPasaran(tanggal, bulan, tahun, waktuLahir) {
-      // Waktu lahir dalam format "HH:mm"
-      const [jam, menit] = waktuLahir.split(':').map(Number);
-      
-      // Referensi akurat: 1 Januari 1990 adalah Hari Senin Legi
-      // Jika lahir setelah jam 18.00 (Maghrib), maka sudah masuk hari Jawa berikutnya
-      let tanggalAdjusted = tanggal;
-      let bulanAdjusted = bulan;
-      let tahunAdjusted = tahun;
-      
-      if (jam >= 18) {
-        // Tambah 1 hari karena sudah masuk hari Jawa berikutnya
-        const tempDate = new Date(tahun, bulan - 1, tanggal);
-        tempDate.setDate(tempDate.getDate() + 1);
-        tanggalAdjusted = tempDate.getDate();
-        bulanAdjusted = tempDate.getMonth() + 1;
-        tahunAdjusted = tempDate.getFullYear();
-      }
-      
-      // Hitung selisih hari dari 1 Januari 1990 (Senin Legi)
-      const baseDate = new Date(1990, 0, 1); // 1 Januari 1990 = Senin Legi
-      const targetDate = new Date(tahunAdjusted, bulanAdjusted - 1, tanggalAdjusted);
-      const diffTime = targetDate - baseDate;
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      
-      // Pasaran berputar setiap 5 hari: Legi, Pahing, Pon, Wage, Kliwon
-      const pasaranList = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
-      const index = diffDays % 5;
-      const pasaranNama = pasaranList[index];
-      return { nama: pasaranNama, ...pasaranData[pasaranNama] };
-    }
-
-    function hitungNeptuWatak(tanggal, bulan, tahun, waktuLahir, pasaran) {
-      let tanggalAdjusted = tanggal;
-      let bulanAdjusted = bulan;
-      let tahunAdjusted = tahun;
-      const [jam] = waktuLahir.split(':').map(Number);
-      
-      if (jam >= 18) {
-        const tempDate = new Date(tahun, bulan - 1, tanggal);
-        tempDate.setDate(tempDate.getDate() + 1);
-        tanggalAdjusted = tempDate.getDate();
-        bulanAdjusted = tempDate.getMonth() + 1;
-        tahunAdjusted = tempDate.getFullYear();
-      }
-      
-      const date = new Date(tahunAdjusted, bulanAdjusted - 1, tanggalAdjusted);
-      const hari = date.getDay();
-      const neptuHariValue = neptuHari[hari];
-      const neptuPasaranValue = pasaran.neptu;
-      const totalNeptu = neptuHariValue + neptuPasaranValue;
-      
-      let watakData = watakNeptu[totalNeptu] || watakNeptu[7];
-      
-      return {
-        hari: namaHari[hari],
-        neptuHari: neptuHariValue,
-        pasaran: pasaran.nama,
-        neptuPasaran: neptuPasaranValue,
-        totalNeptu,
-        watak: watakData
-      };
-    }
-
-    function hitungPerjodohanNeptu(neptu1, neptu2) {
-      const selisih = Math.abs(neptu1 - neptu2);
-      const hasil = selisih % 10;
-      
-      const watakData = watakPerjodohan[hasil] || watakPerjodohan[0];
-      
-      return {
-        neptu1,
-        neptu2,
-        selisih,
-        hasil,
-        watak: watakData
-      };
-    }
-
-    function hitungNumerologi(nama) {
-      const hurufAngka = {
-        'a': 1, 'j': 1, 's': 1,
-        'b': 2, 'k': 2, 't': 2,
-        'c': 3, 'l': 3, 'u': 3,
-        'd': 4, 'm': 4, 'v': 4,
-        'e': 5, 'n': 5, 'w': 5,
-        'f': 6, 'o': 6, 'x': 6,
-        'g': 7, 'p': 7, 'y': 7,
-        'h': 8, 'q': 8, 'z': 8,
-        'i': 9, 'r': 9
-      };
-
-      let total = 0;
-      const namaLower = nama.toLowerCase().replace(/[^a-z]/g, '');
-      
-      for (let char of namaLower) {
-        if (hurufAngka[char]) {
-          total += hurufAngka[char];
-        }
-      }
-
-      while (total > 9) {
-        total = total.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
-      }
-
-      return { angka: total, ...numerologiData[total] };
-    }
-
-    // Fungsi untuk menghitung Weton Jodoh dengan waktu lahir
-    function hitungWetonJodoh(tanggal1, bulan1, tahun1, waktu1, tanggal2, bulan2, tahun2, waktu2, pasaran1, pasaran2) {
-      // Adjust tanggal jika lahir setelah jam 18.00
-      let tanggalAdjusted1 = tanggal1;
-      let bulanAdjusted1 = bulan1;
-      let tahunAdjusted1 = tahun1;
-      const [jam1] = waktu1.split(':').map(Number);
-      
-      if (jam1 >= 18) {
-        const tempDate1 = new Date(tahun1, bulan1 - 1, tanggal1);
-        tempDate1.setDate(tempDate1.getDate() + 1);
-        tanggalAdjusted1 = tempDate1.getDate();
-        bulanAdjusted1 = tempDate1.getMonth() + 1;
-        tahunAdjusted1 = tempDate1.getFullYear();
-      }
-      
-      let tanggalAdjusted2 = tanggal2;
-      let bulanAdjusted2 = bulan2;
-      let tahunAdjusted2 = tahun2;
-      const [jam2] = waktu2.split(':').map(Number);
-      
-      if (jam2 >= 18) {
-        const tempDate2 = new Date(tahun2, bulan2 - 1, tanggal2);
-        tempDate2.setDate(tempDate2.getDate() + 1);
-        tanggalAdjusted2 = tempDate2.getDate();
-        bulanAdjusted2 = tempDate2.getMonth() + 1;
-        tahunAdjusted2 = tempDate2.getFullYear();
-      }
-      
-      const date1 = new Date(tahunAdjusted1, bulanAdjusted1 - 1, tanggalAdjusted1);
-      const date2 = new Date(tahunAdjusted2, bulanAdjusted2 - 1, tanggalAdjusted2);
-      const hari1 = date1.getDay();
-      const hari2 = date2.getDay();
-
-      const neptu1 = neptuHari[hari1] + pasaran1.neptu;
-      const neptu2 = neptuHari[hari2] + pasaran2.neptu;
-      const totalNeptu = neptu1 + neptu2;
-
-      const pembagi = 7;
-      let sisa = totalNeptu % pembagi;
-      
-      if (sisa === 0) sisa = 7;
-
-      let hasilWeton = null;
-      for (let [nama, data] of Object.entries(wetonJodohData)) {
-        if (data.sisa.includes(sisa) || data.sisa.includes(sisa - pembagi) || data.sisa.includes(sisa + pembagi)) {
-          hasilWeton = { nama, ...data };
-          break;
-        }
-      }
-
-      if (!hasilWeton) {
-        if (sisa === 1 || sisa === 9 || sisa === 10) {
-          hasilWeton = { nama: "Pegat", ...wetonJodohData["Pegat"] };
-        } else if (sisa === 2) {
-          hasilWeton = { nama: "Ratu", ...wetonJodohData["Ratu"] };
-        } else if (sisa === 3) {
-          hasilWeton = { nama: "Jodoh", ...wetonJodohData["Jodoh"] };
-        } else if (sisa === 4) {
-          hasilWeton = { nama: "Topo", ...wetonJodohData["Topo"] };
-        } else if (sisa === 5) {
-          hasilWeton = { nama: "Tinari", ...wetonJodohData["Tinari"] };
-        } else if (sisa === 6) {
-          hasilWeton = { nama: "Padu", ...wetonJodohData["Padu"] };
-        } else if (sisa === 7 || sisa === 0) {
-          hasilWeton = { nama: "Sujanan", ...wetonJodohData["Sujanan"] };
-        } else if (sisa === 8) {
-          hasilWeton = { nama: "Pethi", ...wetonJodohData["Pethi"] };
-        }
-      }
-
-      return {
-        neptu1,
-        neptu2,
-        totalNeptu,
-        sisa,
-        hasil: hasilWeton
-      };
-    }
-
-    // ========== FUNGSI ANALISIS KECOCOKAN ==========
-    
-    function analisisShioZodiak(data) {
-      const { shioPertama, zodiakPertama, shioKedua, zodiakKedua } = data;
-      const shioNamaPertama = shioPertama.nama.split(' ')[0];
-      const shioNamaKedua = shioKedua.nama.split(' ')[0];
-      const zodiakNamaPertama = zodiakPertama.nama.split(' ')[0];
-      const zodiakNamaKedua = zodiakKedua.nama.split(' ')[0];
-
-      let skor = 0;
-      let kekuatan = [];
-      let tantangan = [];
-
-      if (shioPertama.cocok.includes(shioNamaKedua)) {
-        skor += 30;
-        kekuatan.push(`Shio ${shioNamaPertama} dan ${shioNamaKedua} sangat cocok dan saling melengkapi`);
-      } else if (shioPertama.bentrok.includes(shioNamaKedua)) {
-        skor -= 10;
-        tantangan.push(`Shio ${shioNamaPertama} dan ${shioNamaKedua} cenderung bentrok dan butuh usaha ekstra`);
-      } else {
-        skor += 10;
-        kekuatan.push(`Shio ${shioNamaPertama} dan ${shioNamaKedua} memiliki hubungan netral yang stabil`);
-      }
-
-      if (zodiakPertama.cocok.includes(zodiakNamaKedua)) {
-        skor += 30;
-        kekuatan.push(`Zodiak ${zodiakNamaPertama} dan ${zodiakNamaKedua} memiliki chemistry yang luar biasa`);
-      } else if (zodiakPertama.bentrok.includes(zodiakNamaKedua)) {
-        skor -= 10;
-        tantangan.push(`Zodiak ${zodiakNamaPertama} dan ${zodiakNamaKedua} memiliki perbedaan karakter yang signifikan`);
-      } else {
-        skor += 10;
-        kekuatan.push(`Zodiak ${zodiakNamaPertama} dan ${zodiakNamaKedua} bisa saling memahami dengan komunikasi baik`);
-      }
-
-      if (shioPertama.hariHoki === shioKedua.hariHoki || zodiakPertama.hariHoki === zodiakKedua.hariHoki) {
-        skor += 15;
-        kekuatan.push('Kalian memiliki hari keberuntungan yang sama, cocok untuk merayakan momen spesial bersama');
-      }
-
-      if (shioPertama.hariNaas === shioKedua.hariNaas || zodiakPertama.hariNaas === zodiakKedua.hariNaas) {
-        skor += 10;
-        kekuatan.push('Hari naas kalian sama, sehingga bisa saling support di hari yang berat');
-      }
-
-      skor += 15;
-
-      if (skor > 100) skor = 100;
-      if (skor < 30) skor = 30;
-
-      if (kekuatan.length === 0) {
-        kekuatan.push('Kalian bisa membangun hubungan yang solid dengan komunikasi yang baik');
-      }
-      if (tantangan.length === 0) {
-        tantangan.push('Perbedaan karakter bisa menjadi kekuatan jika kalian saling menghargai dan memahami');
-      }
-
-      return { skor, kekuatan, tantangan };
-    }
-
-    function analisisPasaranNumerologi(data) {
-      const { pasaranPertama, numerologiPertama, pasaranKedua, numerologiKedua, tanggal1, bulan1, tahun1, waktu1, tanggal2, bulan2, tahun2, waktu2 } = data;
-      
-      let skor = 0;
-      let kekuatan = [];
-      let tantangan = [];
-
-      const wetonJodoh = hitungWetonJodoh(tanggal1, bulan1, tahun1, waktu1, tanggal2, bulan2, tahun2, waktu2, pasaranPertama, pasaranKedua);
-      
-      const skorWeton = Math.round(wetonJodoh.hasil.skor * 0.3);
-      skor += skorWeton;
-
-      kekuatan.push(`Menurut Primbon Jawa (Weton Jodoh): "${wetonJodoh.hasil.nama}" - ${wetonJodoh.hasil.deskripsi}`);
-      
-      if (wetonJodoh.hasil.tingkat === "Sangat Baik") {
-        kekuatan.push(`Perhitungan neptu (${wetonJodoh.neptu1} + ${wetonJodoh.neptu2} = ${wetonJodoh.totalNeptu}) menunjukkan kecocokan luar biasa`);
-      } else if (wetonJodoh.hasil.tingkat === "Baik") {
-        kekuatan.push(`Total neptu ${wetonJodoh.totalNeptu} mengindikasikan hubungan yang positif dan berpotensi baik`);
-      } else if (wetonJodoh.hasil.tingkat === "Cukup") {
-        tantangan.push(`Neptu ${wetonJodoh.totalNeptu} menunjukkan butuh usaha lebih untuk menjaga keharmonisan`);
-      } else {
-        tantangan.push(`Perhitungan weton memberikan peringatan: butuh komitmen ekstra kuat dari kedua pihak`);
-      }
-
-      const wetonCocok = [
-        ['Legi', 'Pahing'], ['Pahing', 'Legi'],
-        ['Pon', 'Wage'], ['Wage', 'Pon'],
-        ['Kliwon', 'Kliwon']
-      ];
-      
-      const wetonPasangan = [pasaranPertama.nama, pasaranKedua.nama];
-      let pasaranCocok = false;
-      
-      for (let pair of wetonCocok) {
-        if ((pair[0] === wetonPasangan[0] && pair[1] === wetonPasangan[1]) ||
-            (pair[0] === wetonPasangan[1] && pair[1] === wetonPasangan[0])) {
-          pasaranCocok = true;
-          break;
-        }
-      }
-
-      if (wetonPasangan[0] === wetonPasangan[1]) {
-        skor += 20;
-        kekuatan.push(`Pasaran ${pasaranPertama.nama} yang sama menunjukkan kesamaan energi spiritual`);
-      } else if (pasaranCocok) {
-        skor += 25;
-        kekuatan.push(`Kombinasi pasaran ${pasaranPertama.nama} dan ${pasaranKedua.nama} sangat harmonis`);
-      } else {
-        skor += 10;
-      }
-
-      const angkaPertama = numerologiPertama.angka;
-      const angkaKedua = numerologiKedua.angka;
-      
-      const numerologiCocok = [
-        [1, 2], [1, 5], [1, 7],
-        [2, 4], [2, 6], [2, 8],
-        [3, 5], [3, 6], [3, 9],
-        [4, 6], [4, 8],
-        [5, 7], [5, 9],
-        [6, 9],
-        [7, 9]
-      ];
-
-      let numeroCocok = false;
-      for (let pair of numerologiCocok) {
-        if ((pair[0] === angkaPertama && pair[1] === angkaKedua) ||
-            (pair[0] === angkaKedua && pair[1] === angkaPertama)) {
-          numeroCocok = true;
-          break;
-        }
-      }
-
-      if (angkaPertama === angkaKedua) {
-        skor += 20;
-        kekuatan.push(`Angka ${angkaPertama} yang sama mencerminkan tujuan hidup dan nilai yang selaras`);
-      } else if (numeroCocok) {
-        skor += 25;
-        kekuatan.push(`Angka ${angkaPertama} dan ${angkaKedua} memiliki energi yang saling mendukung dan melengkapi`);
-      } else {
-        skor += 10;
-        tantangan.push(`Perbedaan angka ${angkaPertama} dan ${angkaKedua} membutuhkan pemahaman dan toleransi lebih`);
-      }
-
-      const karakterSeimbang = Math.abs(angkaPertama - angkaKedua);
-      if (karakterSeimbang <= 3) {
-        skor += 15;
-        kekuatan.push('Karakter nama kalian cukup seimbang, memudahkan untuk saling memahami');
-      } else {
-        tantangan.push('Perbedaan karakter yang cukup jauh bisa menjadi tantangan atau kekayaan dalam hubungan');
-      }
-
-      if (skor > 100) skor = 100;
-      if (skor < 30) skor = 30;
-
-      if (kekuatan.length === 0) {
-        kekuatan.push('Kalian memiliki potensi untuk membangun hubungan yang unik dan bermakna');
-      }
-      if (tantangan.length === 0) {
-        tantangan.push('Setiap perbedaan adalah kesempatan untuk tumbuh bersama');
-      }
-
-      return { skor, kekuatan, tantangan };
-    }
-
-    // ========== FUNGSI TAMPILAN ==========
-    
-    async function onConfigChange(config) {
-      const mainTitle = document.getElementById('mainTitle');
-      const subtitle = document.getElementById('subtitle');
-      const calculateBtn = document.getElementById('calculateBtn');
-      const resetBtn = document.getElementById('resetBtn');
-      const app = document.getElementById('app');
-
-      const customFont = config.font_family || defaultConfig.font_family;
-      const baseSize = config.font_size || defaultConfig.font_size;
-      const baseFontStack = 'system-ui, -apple-system, sans-serif';
-
-      mainTitle.textContent = config.main_title || defaultConfig.main_title;
-      subtitle.textContent = config.subtitle || defaultConfig.subtitle;
-      calculateBtn.textContent = config.calculate_button || defaultConfig.calculate_button;
-      resetBtn.textContent = config.reset_button || defaultConfig.reset_button;
-
-      mainTitle.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      mainTitle.style.fontSize = `${baseSize * 2}px`;
-      subtitle.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      subtitle.style.fontSize = `${baseSize * 1.25}px`;
-
-      const backgroundColor = config.background_color || defaultConfig.background_color;
-      const cardColor = config.card_color || defaultConfig.card_color;
-      const textColor = config.text_color || defaultConfig.text_color;
-      const primaryButtonColor = config.primary_button_color || defaultConfig.primary_button_color;
-      const secondaryButtonColor = config.secondary_button_color || defaultConfig.secondary_button_color;
-
-      app.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${adjustColor(backgroundColor, -20)} 100%)`;
-      
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        card.style.backgroundColor = cardColor;
-        card.style.color = textColor;
-      });
-
-      calculateBtn.style.backgroundColor = primaryButtonColor;
-      calculateBtn.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      calculateBtn.style.fontSize = `${baseSize * 1.125}px`;
-      
-      resetBtn.style.backgroundColor = secondaryButtonColor;
-      resetBtn.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      resetBtn.style.fontSize = `${baseSize * 1.125}px`;
-
-      const labels = document.querySelectorAll('label');
-      labels.forEach(label => {
-        label.style.color = textColor;
-        label.style.fontFamily = `${customFont}, ${baseFontStack}`;
-        label.style.fontSize = `${baseSize * 1.125}px`;
-      });
-
-      const resultTitles = document.querySelectorAll('.result-card h3');
-      resultTitles.forEach(title => {
-        title.style.fontFamily = `${customFont}, ${baseFontStack}`;
-        title.style.fontSize = `${baseSize * 1.5}px`;
-      });
-
-      const resultNames = document.querySelectorAll('.result-card p[id$="Name"], .result-card p[id$="Angka"]');
-      resultNames.forEach(name => {
-        name.style.fontFamily = `${customFont}, ${baseFontStack}`;
-        name.style.fontSize = `${baseSize * 1.875}px`;
-      });
-
-      const resultDescs = document.querySelectorAll('.result-card p[id$="Desc"]');
-      resultDescs.forEach(desc => {
-        desc.style.fontFamily = `${customFont}, ${baseFontStack}`;
-        desc.style.fontSize = `${baseSize * 1.125}px`;
-      });
-    }
-
-    function adjustColor(color, percent) {
-      const num = parseInt(color.replace("#", ""), 16);
-      const amt = Math.round(2.55 * percent);
-      const R = (num >> 16) + amt;
-      const G = (num >> 8 & 0x00FF) + amt;
-      const B = (num & 0x0000FF) + amt;
-      return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
-        (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
-        (B < 255 ? B < 1 ? 0 : B : 255))
-        .toString(16).slice(1);
-    }
-
-    function tampilkanHasilAnalisis(hasil, versi) {
-      const { skor, kekuatan, tantangan } = hasil;
-
-      if (versi === 'shioZodiak') {
-        skorShioZodiakGlobal = skor;
-        kekuatanGlobal = kekuatanGlobal.concat(kekuatan);
-        tantanganGlobal = tantanganGlobal.concat(tantangan);
-      } else {
-        skorPasaranNumerologiGlobal = skor;
-        kekuatanGlobal = kekuatanGlobal.concat(kekuatan);
-        tantanganGlobal = tantanganGlobal.concat(tantangan);
-      }
-
-      if (skorShioZodiakGlobal > 0 && skorPasaranNumerologiGlobal > 0) {
-        const rataRata = Math.round((skorShioZodiakGlobal + skorPasaranNumerologiGlobal) / 2);
-        
-        let status, icon, bgColor, statusColor;
-        if (rataRata >= 80) {
-          status = 'Sangat Cocok!';
-          icon = '🔥💖✨';
-          bgColor = 'background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);';
-          statusColor = 'text-pink-600';
-        } else if (rataRata >= 60) {
-          status = 'Cocok';
-          icon = '💕💫';
-          bgColor = 'background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);';
-          statusColor = 'text-blue-600';
-        } else if (rataRata >= 40) {
-          status = 'Cukup Cocok';
-          icon = '💛✨';
-          bgColor = 'background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);';
-          statusColor = 'text-green-600';
-        } else {
-          status = 'Perlu Usaha Lebih';
-          icon = '💪🌟';
-          bgColor = 'background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);';
-          statusColor = 'text-orange-600';
+            return {
+                day: hijriDay,
+                month: hijriMonth,
+                year: hijriYear,
+                monthName: namaBulanHijriah[hijriMonth]
+            };
         }
 
-        document.getElementById('kesimpulanBg').style = bgColor;
-        document.getElementById('kesimpulanIcon').textContent = icon;
-        document.getElementById('kesimpulanStatus').textContent = status;
-        document.getElementById('kesimpulanStatus').className = `text-4xl font-bold mb-2 ${statusColor}`;
-        
-        document.getElementById('skorShioZodiak').textContent = `${skorShioZodiakGlobal}%`;
-        document.getElementById('skorPasaranNumerologi').textContent = `${skorPasaranNumerologiGlobal}%`;
-        document.getElementById('skorRataRata').textContent = `${rataRata}%`;
-        document.getElementById('skorRataRata').className = `text-4xl font-bold ${statusColor}`;
-
-        const kekuatanUnique = [...new Set(kekuatanGlobal)];
-        const tantanganUnique = [...new Set(tantanganGlobal)];
-
-        document.getElementById('kesimpulanKekuatan').textContent = kekuatanUnique.join('. ') + '.';
-        document.getElementById('kesimpulanTantangan').textContent = tantanganUnique.join('. ') + '.';
-
-        let saran = '';
-        if (rataRata >= 80) {
-          saran = 'Pertahankan chemistry kalian dengan terus berkomunikasi dan saling mendukung. Manfaatkan hari keberuntungan bersama untuk menciptakan momen indah. Kalian memiliki fondasi yang sangat kuat untuk hubungan jangka panjang yang harmonis.';
-        } else if (rataRata >= 60) {
-          saran = 'Hubungan kalian memiliki potensi besar dengan kecocokan yang baik di berbagai aspek. Fokuslah pada kekuatan masing-masing dan saling melengkapi. Komunikasi terbuka dan saling menghormati akan membuat hubungan semakin kuat.';
-        } else if (rataRata >= 40) {
-          saran = 'Butuh kompromi dan pengertian dari kedua belah pihak untuk mencapai keharmonisan. Hormati perbedaan dan fokus pada tujuan bersama. Dengan usaha konsisten dan kesabaran, hubungan bisa berkembang sangat positif.';
-        } else {
-          saran = 'Hubungan membutuhkan kerja keras, dedikasi tinggi, dan komitmen kuat dari kedua pihak. Penting untuk memahami perbedaan mendasar dan terus mencari jalan tengah. Jika kalian berdua benar-benar berkomitmen dan saling mencintai, semua tantangan bisa diatasi.';
+        // ========== FUNGSI PERHITUNGAN ==========
+        function hitungShio(tahun) {
+            const sisa = tahun % 12;
+            return shioData[sisa];
         }
-        document.getElementById('kesimpulanSaran').textContent = saran;
 
-        document.getElementById('kesimpulanFinal').classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
+        function hitungUnsur(tahun) {
+            const unsurList = ["Logam", "Air", "Kayu", "Api", "Tanah"];
+            const digit = tahun % 10;
+            const index = Math.floor(digit / 2);
+            const unsurNama = unsurList[index];
+            return { nama: unsurNama, ...unsurData[unsurNama] };
+        }
 
-    // ========== EVENT LISTENERS ==========
-    
-    let dataPasangan = {};
-    let skorShioZodiakGlobal = 0;
-    let skorPasaranNumerologiGlobal = 0;
-    let kekuatanGlobal = [];
-    let tantanganGlobal = [];
+        function hitungZodiak(tanggal, bulan) {
+            for (let zodiak of zodiakData) {
+                const [bulan1, tgl1, bulan2, tgl2] = zodiak.tanggal;
+                if ((bulan === bulan1 && tanggal >= tgl1) || (bulan === bulan2 && tanggal <= tgl2)) {
+                    return zodiak;
+                }
+            }
+            return zodiakData[0];
+        }
 
-    // Navigasi Menu
-    document.getElementById('btnDiriSendiri').addEventListener('click', function() {
-      document.getElementById('menuPage').classList.add('hidden');
-      document.getElementById('formDiriSendiri').classList.remove('hidden');
-    });
+        function hitungPasaran(tanggal, bulan, tahun, waktuLahir) {
+            const [jam] = waktuLahir.split(':').map(Number);
+            
+            let tanggalAdjusted = tanggal;
+            let bulanAdjusted = bulan;
+            let tahunAdjusted = tahun;
+            
+            if (jam >= 18) {
+                const tempDate = new Date(tahun, bulan - 1, tanggal);
+                tempDate.setDate(tempDate.getDate() + 1);
+                tanggalAdjusted = tempDate.getDate();
+                bulanAdjusted = tempDate.getMonth() + 1;
+                tahunAdjusted = tempDate.getFullYear();
+            }
+            
+            const baseDate = new Date(1990, 0, 1);
+            const targetDate = new Date(tahunAdjusted, bulanAdjusted - 1, tanggalAdjusted);
+            const diffTime = targetDate - baseDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            const pasaranList = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
+            const index = diffDays % 5;
+            const pasaranNama = pasaranList[index];
+            return { nama: pasaranNama, ...pasaranData[pasaranNama] };
+        }
 
-    document.getElementById('btnPasangan').addEventListener('click', function() {
-      document.getElementById('menuPage').classList.add('hidden');
-      document.getElementById('formPasangan').classList.remove('hidden');
-    });
+        function hitungNeptuWatak(tanggal, bulan, tahun, waktuLahir, pasaran) {
+            let tanggalAdjusted = tanggal;
+            let bulanAdjusted = bulan;
+            let tahunAdjusted = tahun;
+            const [jam] = waktuLahir.split(':').map(Number);
+            
+            if (jam >= 18) {
+                const tempDate = new Date(tahun, bulan - 1, tanggal);
+                tempDate.setDate(tempDate.getDate() + 1);
+                tanggalAdjusted = tempDate.getDate();
+                bulanAdjusted = tempDate.getMonth() + 1;
+                tahunAdjusted = tempDate.getFullYear();
+            }
+            
+            const date = new Date(tahunAdjusted, bulanAdjusted - 1, tanggalAdjusted);
+            const hari = date.getDay();
+            const neptuHariValue = neptuHari[hari];
+            const neptuPasaranValue = pasaran.neptu;
+            const totalNeptu = neptuHariValue + neptuPasaranValue;
+            
+            let watakData = watakNeptu[totalNeptu] || watakNeptu[7];
+            
+            return {
+                hari: namaHari[hari],
+                neptuHari: neptuHariValue,
+                pasaran: pasaran.nama,
+                neptuPasaran: neptuPasaranValue,
+                totalNeptu,
+                watak: watakData
+            };
+        }
 
-    document.getElementById('backFromDiri').addEventListener('click', function() {
-      document.getElementById('formDiriSendiri').classList.add('hidden');
-      document.getElementById('menuPage').classList.remove('hidden');
-      document.getElementById('ramalanFormDiri').reset();
-    });
+        function hitungPerjodohanNeptu(neptu1, neptu2) {
+            const selisih = Math.abs(neptu1 - neptu2);
+            const hasil = selisih % 10;
+            
+            const watakData = watakPerjodohan[hasil] || watakPerjodohan[0];
+            
+            return {
+                neptu1,
+                neptu2,
+                selisih,
+                hasil,
+                watak: watakData
+            };
+        }
 
-    document.getElementById('backFromPasangan').addEventListener('click', function() {
-      document.getElementById('formPasangan').classList.add('hidden');
-      document.getElementById('menuPage').classList.remove('hidden');
-      document.getElementById('ramalanFormPasangan').reset();
-    });
+        function hitungNumerologi(nama) {
+            const hurufAngka = {
+                'a': 1, 'j': 1, 's': 1,
+                'b': 2, 'k': 2, 't': 2,
+                'c': 3, 'l': 3, 'u': 3,
+                'd': 4, 'm': 4, 'v': 4,
+                'e': 5, 'n': 5, 'w': 5,
+                'f': 6, 'o': 6, 'x': 6,
+                'g': 7, 'p': 7, 'y': 7,
+                'h': 8, 'q': 8, 'z': 8,
+                'i': 9, 'r': 9
+            };
 
-    document.getElementById('backFromResultDiri').addEventListener('click', function() {
-      document.getElementById('resultsDiri').classList.add('hidden');
-      document.getElementById('menuPage').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+            let total = 0;
+            const namaLower = nama.toLowerCase().replace(/[^a-z]/g, '');
+            
+            for (let char of namaLower) {
+                if (hurufAngka[char]) {
+                    total += hurufAngka[char];
+                }
+            }
 
-    document.getElementById('backFromResultPasangan').addEventListener('click', function() {
-      document.getElementById('resultsPasangan').classList.add('hidden');
-      document.getElementById('menuPage').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+            while (total > 9) {
+                total = total.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+            }
 
-    // Form Diri Sendiri
-    document.getElementById('ramalanFormDiri').addEventListener('submit', function(e) {
-      e.preventDefault();
+            return { angka: total, ...dataNumerologi[total] };
+        }
 
-      const nama = document.getElementById('namaDiri').value;
-      const tanggalLahir = document.getElementById('tanggalLahirDiri').value;
-      const waktuLahir = document.getElementById('waktuLahirDiri').value;
-      
-      const dateObj = new Date(tanggalLahir);
-      const tanggal = dateObj.getDate();
-      const bulan = dateObj.getMonth() + 1;
-      const tahun = dateObj.getFullYear();
+        function analisisShioZodiak(data) {
+            const { shioPertama, zodiakPertama, shioKedua, zodiakKedua } = data;
+            const shioNamaPertama = shioPertama.nama;
+            const shioNamaKedua = shioKedua.nama;
+            const zodiakNamaPertama = zodiakPertama.nama.split(' ')[0];
+            const zodiakNamaKedua = zodiakKedua.nama.split(' ')[0];
 
-      const shio = hitungShio(tahun);
-      const unsur = hitungUnsur(tahun);
-      const zodiak = hitungZodiak(tanggal, bulan);
-      const pasaran = hitungPasaran(tanggal, bulan, tahun, waktuLahir);
-      const numerologi = hitungNumerologi(nama);
-      const neptuWatak = hitungNeptuWatak(tanggal, bulan, tahun, waktuLahir, pasaran);
+            let skor = 0;
+            let kekuatan = [];
+            let tantangan = [];
 
-      // Format tanggal lahir
-      const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-      const tanggalLahirFormatted = `${tanggal} ${namaBulan[bulan - 1]} ${tahun}`;
-      
-      document.getElementById('neptuTanggalLahir').textContent = tanggalLahirFormatted;
+            if (shioPertama.cocok.includes(shioNamaKedua)) {
+                skor += 30;
+                kekuatan.push(`Shio ${shioNamaPertama} dan ${shioNamaKedua} sangat cocok dan saling melengkapi`);
+            } else if (shioPertama.bentrok.includes(shioNamaKedua)) {
+                skor -= 10;
+                tantangan.push(`Shio ${shioNamaPertama} dan ${shioNamaKedua} cenderung bentrok dan butuh usaha ekstra`);
+            } else {
+                skor += 10;
+                kekuatan.push(`Shio ${shioNamaPertama} dan ${shioNamaKedua} memiliki hubungan netral yang stabil`);
+            }
 
-      document.getElementById('shioIcon').textContent = shio.nama.split(' ')[1];
-      document.getElementById('shioName').textContent = shio.nama;
-      document.getElementById('shioDesc').textContent = shio.deskripsi;
-      document.getElementById('shioNegatif').textContent = shio.negatif;
-      document.getElementById('shioHariHoki').textContent = shio.hariHoki;
-      document.getElementById('shioHariNaas').textContent = shio.hariNaas;
-      document.getElementById('shioCocok').textContent = shio.cocok.join(', ');
-      document.getElementById('shioBentrok').textContent = shio.bentrok.join(', ');
+            if (zodiakPertama.cocok.includes(zodiakNamaKedua)) {
+                skor += 30;
+                kekuatan.push(`Zodiak ${zodiakNamaPertama} dan ${zodiakNamaKedua} memiliki chemistry yang luar biasa`);
+            } else if (zodiakPertama.bentrok.includes(zodiakNamaKedua)) {
+                skor -= 10;
+                tantangan.push(`Zodiak ${zodiakNamaPertama} dan ${zodiakNamaKedua} memiliki perbedaan karakter yang signifikan`);
+            } else {
+                skor += 10;
+                kekuatan.push(`Zodiak ${zodiakNamaPertama} dan ${zodiakNamaKedua} bisa saling memahami dengan komunikasi baik`);
+            }
 
-      document.getElementById('unsurIcon').textContent = unsur.icon;
-      document.getElementById('unsurName').textContent = unsur.nama;
-      document.getElementById('unsurDesc').textContent = unsur.deskripsi;
-      document.getElementById('unsurNegatif').textContent = unsur.negatif;
+            if (shioPertama.hariHoki === shioKedua.hariHoki || zodiakPertama.hariHoki === zodiakKedua.hariHoki) {
+                skor += 15;
+                kekuatan.push('Kalian memiliki hari keberuntungan yang sama, cocok untuk merayakan momen spesial bersama');
+            }
 
-      document.getElementById('zodiakIcon').textContent = zodiak.icon;
-      document.getElementById('zodiakName').textContent = zodiak.nama;
-      document.getElementById('zodiakDesc').textContent = zodiak.deskripsi;
-      document.getElementById('zodiakNegatif').textContent = zodiak.negatif;
-      document.getElementById('zodiakHariHoki').textContent = zodiak.hariHoki;
-      document.getElementById('zodiakHariNaas').textContent = zodiak.hariNaas;
-      document.getElementById('zodiakCocok').textContent = zodiak.cocok.join(', ');
-      document.getElementById('zodiakBentrok').textContent = zodiak.bentrok.join(', ');
+            if (shioPertama.hariNaas === shioKedua.hariNaas || zodiakPertama.hariNaas === zodiakKedua.hariNaas) {
+                skor += 10;
+                kekuatan.push('Hari naas kalian sama, sehingga bisa saling support di hari yang berat');
+            }
 
-      document.getElementById('pasaranIcon').textContent = pasaran.icon;
-      document.getElementById('pasaranName').textContent = pasaran.nama;
-      document.getElementById('pasaranDesc').textContent = pasaran.deskripsi;
-      document.getElementById('pasaranNegatif').textContent = pasaran.negatif;
+            skor += 15;
 
-      document.getElementById('neptuHari').textContent = neptuWatak.hari;
-      document.getElementById('neptuHariValue').textContent = neptuWatak.neptuHari;
-      document.getElementById('neptuPasaran').textContent = neptuWatak.pasaran;
-      document.getElementById('neptuPasaranValue').textContent = neptuWatak.neptuPasaran;
-      document.getElementById('neptuTotal').textContent = neptuWatak.totalNeptu;
-      document.getElementById('neptuWatakNama').textContent = neptuWatak.watak.nama;
-      document.getElementById('neptuWatakDesc').textContent = neptuWatak.watak.watak;
-      document.getElementById('neptuWatakSifat').textContent = neptuWatak.watak.sifat;
-      document.getElementById('neptuWatakNegatif').textContent = neptuWatak.watak.negatif;
+            if (skor > 100) skor = 100;
+            if (skor < 30) skor = 30;
 
-      document.getElementById('numerologiIcon').textContent = `#${numerologi.angka}`;
-      document.getElementById('numerologiAngka').textContent = `Angka ${numerologi.angka}`;
-      document.getElementById('numerologiDesc').textContent = numerologi.deskripsi;
-      document.getElementById('numerologiNegatif').textContent = numerologi.negatif;
+            if (kekuatan.length === 0) {
+                kekuatan.push('Kalian bisa membangun hubungan yang solid dengan komunikasi yang baik');
+            }
+            if (tantangan.length === 0) {
+                tantangan.push('Perbedaan karakter bisa menjadi kekuatan jika kalian saling menghargai dan memahami');
+            }
 
-      const kesimpulanText = `Berdasarkan analisis lengkap ramalan Anda, Anda adalah pribadi ${shio.nama.split(' ')[0]} dengan unsur ${unsur.nama} dan zodiak ${zodiak.nama.split(' ')[0]}. Kombinasi ini menunjukkan bahwa Anda memiliki kekuatan utama dalam ${shio.deskripsi.split('.')[0].toLowerCase()}, didukung oleh sifat ${unsur.nama.toLowerCase()} yang ${unsur.deskripsi.split('.')[0].toLowerCase()}. Sebagai ${zodiak.nama.split(' ')[0]}, Anda cenderung ${zodiak.deskripsi.split('.')[0].toLowerCase()}. 
+            return { skor, kekuatan, tantangan };
+        }
+
+        function analisisPasaranNumerologi(data) {
+            const { pasaranPertama, numerologiPertama, pasaranKedua, numerologiKedua } = data;
+            
+            let skor = 0;
+            let kekuatan = [];
+            let tantangan = [];
+
+            const wetonCocok = [
+                ['Legi', 'Pahing'], ['Pahing', 'Legi'],
+                ['Pon', 'Wage'], ['Wage', 'Pon'],
+                ['Kliwon', 'Kliwon']
+            ];
+            
+            const wetonPasangan = [pasaranPertama.nama, pasaranKedua.nama];
+            let pasaranCocok = false;
+            
+            for (let pair of wetonCocok) {
+                if ((pair[0] === wetonPasangan[0] && pair[1] === wetonPasangan[1]) ||
+                    (pair[0] === wetonPasangan[1] && pair[1] === wetonPasangan[0])) {
+                    pasaranCocok = true;
+                    break;
+                }
+            }
+
+            if (wetonPasangan[0] === wetonPasangan[1]) {
+                skor += 20;
+                kekuatan.push(`Pasaran ${pasaranPertama.nama} yang sama menunjukkan kesamaan energi spiritual`);
+            } else if (pasaranCocok) {
+                skor += 25;
+                kekuatan.push(`Kombinasi pasaran ${pasaranPertama.nama} dan ${pasaranKedua.nama} sangat harmonis`);
+            } else {
+                skor += 10;
+            }
+
+            const angkaPertama = numerologiPertama.angka;
+            const angkaKedua = numerologiKedua.angka;
+            
+            const numerologiCocok = [
+                [1, 2], [1, 5], [1, 7],
+                [2, 4], [2, 6], [2, 8],
+                [3, 5], [3, 6], [3, 9],
+                [4, 6], [4, 8],
+                [5, 7], [5, 9],
+                [6, 9],
+                [7, 9]
+            ];
+
+            let numeroCocok = false;
+            for (let pair of numerologiCocok) {
+                if ((pair[0] === angkaPertama && pair[1] === angkaKedua) ||
+                    (pair[0] === angkaKedua && pair[1] === angkaPertama)) {
+                    numeroCocok = true;
+                    break;
+                }
+            }
+
+            if (angkaPertama === angkaKedua) {
+                skor += 20;
+                kekuatan.push(`Angka ${angkaPertama} yang sama mencerminkan tujuan hidup dan nilai yang selaras`);
+            } else if (numeroCocok) {
+                skor += 25;
+                kekuatan.push(`Angka ${angkaPertama} dan ${angkaKedua} memiliki energi yang saling mendukung dan melengkapi`);
+            } else {
+                skor += 10;
+                tantangan.push(`Perbedaan angka ${angkaPertama} dan ${angkaKedua} membutuhkan pemahaman dan toleransi lebih`);
+            }
+
+            const karakterSeimbang = Math.abs(angkaPertama - angkaKedua);
+            if (karakterSeimbang <= 3) {
+                skor += 15;
+                kekuatan.push('Karakter nama kalian cukup seimbang, memudahkan untuk saling memahami');
+            } else {
+                tantangan.push('Perbedaan karakter yang cukup jauh bisa menjadi tantangan atau kekayaan dalam hubungan');
+            }
+
+            skor += 25;
+
+            if (skor > 100) skor = 100;
+            if (skor < 30) skor = 30;
+
+            if (kekuatan.length === 0) {
+                kekuatan.push('Kalian memiliki potensi untuk membangun hubungan yang unik dan bermakna');
+            }
+            if (tantangan.length === 0) {
+                tantangan.push('Setiap perbedaan adalah kesempatan untuk tumbuh bersama');
+            }
+
+            return { skor, kekuatan, tantangan };
+        }
+
+        // ========== EVENT LISTENERS ==========
+        let dataPasangan = {};
+        let skorShioZodiakGlobal = 0;
+        let skorPasaranNumerologiGlobal = 0;
+        let kekuatanGlobal = [];
+        let tantanganGlobal = [];
+
+        document.getElementById('btnDiriSendiri').addEventListener('click', function() {
+            document.getElementById('menuPage').classList.add('hidden');
+            document.getElementById('formDiriSendiri').classList.remove('hidden');
+        });
+
+        document.getElementById('btnPasangan').addEventListener('click', function() {
+            document.getElementById('menuPage').classList.add('hidden');
+            document.getElementById('formPasangan').classList.remove('hidden');
+        });
+
+        document.getElementById('backFromDiri').addEventListener('click', function() {
+            document.getElementById('formDiriSendiri').classList.add('hidden');
+            document.getElementById('menuPage').classList.remove('hidden');
+            document.getElementById('ramalanFormDiri').reset();
+        });
+
+        document.getElementById('backFromPasangan').addEventListener('click', function() {
+            document.getElementById('formPasangan').classList.add('hidden');
+            document.getElementById('menuPage').classList.remove('hidden');
+            document.getElementById('ramalanFormPasangan').reset();
+        });
+
+        document.getElementById('backFromResultDiri').addEventListener('click', function() {
+            document.getElementById('resultsDiri').classList.add('hidden');
+            document.getElementById('menuPage').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('backFromResultPasangan').addEventListener('click', function() {
+            document.getElementById('resultsPasangan').classList.add('hidden');
+            document.getElementById('menuPage').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form Diri Sendiri
+        document.getElementById('ramalanFormDiri').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById('namaDiri').value;
+            const tanggalLahir = document.getElementById('tanggalLahirDiri').value;
+            const waktuLahir = document.getElementById('waktuLahirDiri').value;
+            
+            const dateObj = new Date(tanggalLahir);
+            const tanggal = dateObj.getDate();
+            const bulan = dateObj.getMonth() + 1;
+            const tahun = dateObj.getFullYear();
+
+            // Konversi ke Hijriah
+            const hijriah = gregorianToHijri(tanggal, bulan, tahun);
+            const tanggalMasehi = `${tanggal} ${namaBulan[bulan - 1]} ${tahun}`;
+            const tanggalHijriahStr = `${hijriah.day} ${hijriah.monthName} ${hijriah.year} H`;
+
+            document.getElementById('tanggalMasehi').textContent = tanggalMasehi;
+            document.getElementById('tanggalHijriah').textContent = tanggalHijriahStr;
+
+            const shio = hitungShio(tahun);
+            const unsur = hitungUnsur(tahun);
+            const zodiak = hitungZodiak(tanggal, bulan);
+            const pasaran = hitungPasaran(tanggal, bulan, tahun, waktuLahir);
+            const numerologi = hitungNumerologi(nama);
+            const neptuWatak = hitungNeptuWatak(tanggal, bulan, tahun, waktuLahir, pasaran);
+
+            document.getElementById('shioIcon').textContent = shio.icon;
+            document.getElementById('shioName').textContent = shio.nama;
+            document.getElementById('shioDesc').textContent = shio.deskripsi;
+            document.getElementById('shioNegatif').textContent = shio.negatif;
+            document.getElementById('shioHariHoki').textContent = shio.hariHoki;
+            document.getElementById('shioHariNaas').textContent = shio.hariNaas;
+            document.getElementById('shioCocok').textContent = shio.cocok.join(', ');
+            document.getElementById('shioBentrok').textContent = shio.bentrok.join(', ');
+
+            document.getElementById('unsurIcon').textContent = unsur.icon;
+            document.getElementById('unsurName').textContent = unsur.nama;
+            document.getElementById('unsurDesc').textContent = unsur.deskripsi;
+            document.getElementById('unsurNegatif').textContent = unsur.negatif;
+
+            document.getElementById('zodiakIcon').textContent = zodiak.icon;
+            document.getElementById('zodiakName').textContent = zodiak.nama;
+            document.getElementById('zodiakDesc').textContent = zodiak.deskripsi;
+            document.getElementById('zodiakNegatif').textContent = zodiak.negatif;
+            document.getElementById('zodiakHariHoki').textContent = zodiak.hariHoki;
+            document.getElementById('zodiakHariNaas').textContent = zodiak.hariNaas;
+            document.getElementById('zodiakCocok').textContent = zodiak.cocok.join(', ');
+            document.getElementById('zodiakBentrok').textContent = zodiak.bentrok.join(', ');
+
+            document.getElementById('pasaranIcon').textContent = pasaran.icon;
+            document.getElementById('pasaranName').textContent = pasaran.nama;
+            document.getElementById('pasaranDesc').textContent = pasaran.deskripsi;
+            document.getElementById('pasaranNegatif').textContent = pasaran.negatif;
+
+            document.getElementById('neptuHari').textContent = neptuWatak.hari;
+            document.getElementById('neptuHariValue').textContent = neptuWatak.neptuHari;
+            document.getElementById('neptuPasaran').textContent = neptuWatak.pasaran;
+            document.getElementById('neptuPasaranValue').textContent = neptuWatak.neptuPasaran;
+            document.getElementById('neptuTotal').textContent = neptuWatak.totalNeptu;
+            document.getElementById('neptuWatakNama').textContent = neptuWatak.watak.nama;
+            document.getElementById('neptuWatakDesc').textContent = neptuWatak.watak.watak;
+            document.getElementById('neptuWatakSifat').textContent = neptuWatak.watak.sifat;
+            document.getElementById('neptuWatakNegatif').textContent = neptuWatak.watak.negatif;
+
+            document.getElementById('numerologiIcon').textContent = `#${numerologi.angka}`;
+            document.getElementById('numerologiAngka').textContent = `Angka ${numerologi.angka}`;
+            document.getElementById('numerologiDesc').textContent = numerologi.deskripsi;
+            document.getElementById('numerologiNegatif').textContent = numerologi.negatif;
+
+            const kesimpulanText = `Berdasarkan analisis lengkap ramalan Anda yang lahir pada ${tanggalMasehi} (${tanggalHijriahStr}), Anda adalah pribadi ${shio.nama} dengan unsur ${unsur.nama} dan zodiak ${zodiak.nama.split(' ')[0]}. Kombinasi ini menunjukkan bahwa Anda memiliki kekuatan utama dalam ${shio.deskripsi.split('.')[0].toLowerCase()}, didukung oleh sifat ${unsur.nama.toLowerCase()} yang ${unsur.deskripsi.split('.')[0].toLowerCase()}. Sebagai ${zodiak.nama.split(' ')[0]}, Anda cenderung ${zodiak.deskripsi.split('.')[0].toLowerCase()}. 
 
 Menurut Primbon Jawa, Anda lahir pada hari ${neptuWatak.hari} ${neptuWatak.pasaran} dengan total neptu ${neptuWatak.totalNeptu} (Hari: ${neptuWatak.neptuHari} + Pasaran: ${neptuWatak.neptuPasaran}). Watak Anda adalah "${neptuWatak.watak.nama}" yang berarti ${neptuWatak.watak.watak.toLowerCase()}. Sifat utama Anda: ${neptuWatak.watak.sifat.toLowerCase()}. Karakter nama Anda dengan angka ${numerologi.angka} menunjukkan ${numerologi.deskripsi.split('.')[0].toLowerCase()}. 
 
@@ -1236,238 +923,278 @@ Untuk mencapai potensi terbaik, manfaatkan hari keberuntungan Anda (Shio: ${shio
 
 Waspadai kecenderungan negatif seperti: ${shio.negatif.split('.')[0].toLowerCase()}, ${unsur.negatif.split('.')[0].toLowerCase()}, ${zodiak.negatif.split('.')[0].toLowerCase()}, dan ${neptuWatak.watak.negatif.toLowerCase()}. Dengan mengenali dan mengelola sisi negatif ini sambil mengoptimalkan kekuatan Anda, Anda dapat menjalani hidup yang lebih seimbang dan sukses.`;
 
-      document.getElementById('kesimpulan').textContent = kesimpulanText;
+            document.getElementById('kesimpulan').textContent = kesimpulanText;
 
-      document.getElementById('formDiriSendiri').classList.add('hidden');
-      document.getElementById('resultsDiri').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+            document.getElementById('formDiriSendiri').classList.add('hidden');
+            document.getElementById('resultsDiri').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-    // Form Pasangan
-    document.getElementById('ramalanFormPasangan').addEventListener('submit', function(e) {
-      e.preventDefault();
+        // Form Pasangan
+        document.getElementById('ramalanFormPasangan').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-      const namaPertama = document.getElementById('namaPertama').value;
-      const tanggalLahirPertama = document.getElementById('tanggalLahirPertama').value;
-      const waktuLahirPertama = document.getElementById('waktuLahirPertama').value;
-      const namaKedua = document.getElementById('namaKedua').value;
-      const tanggalLahirKedua = document.getElementById('tanggalLahirKedua').value;
-      const waktuLahirKedua = document.getElementById('waktuLahirKedua').value;
-      
-      const dateObjPertama = new Date(tanggalLahirPertama);
-      const tanggalPertama = dateObjPertama.getDate();
-      const bulanPertama = dateObjPertama.getMonth() + 1;
-      const tahunPertama = dateObjPertama.getFullYear();
+            const namaPertama = document.getElementById('namaPertama').value;
+            const tanggalLahirPertama = document.getElementById('tanggalLahirPertama').value;
+            const waktuLahirPertama = document.getElementById('waktuLahirPertama').value;
+            const namaKedua = document.getElementById('namaKedua').value;
+            const tanggalLahirKedua = document.getElementById('tanggalLahirKedua').value;
+            const waktuLahirKedua = document.getElementById('waktuLahirKedua').value;
+            
+            const dateObjPertama = new Date(tanggalLahirPertama);
+            const tanggalPertama = dateObjPertama.getDate();
+            const bulanPertama = dateObjPertama.getMonth() + 1;
+            const tahunPertama = dateObjPertama.getFullYear();
 
-      const shioPertama = hitungShio(tahunPertama);
-      const zodiakPertama = hitungZodiak(tanggalPertama, bulanPertama);
-      const pasaranPertama = hitungPasaran(tanggalPertama, bulanPertama, tahunPertama, waktuLahirPertama);
-      const numerologiPertama = hitungNumerologi(namaPertama);
+            const dateObjKedua = new Date(tanggalLahirKedua);
+            const tanggalKedua = dateObjKedua.getDate();
+            const bulanKedua = dateObjKedua.getMonth() + 1;
+            const tahunKedua = dateObjKedua.getFullYear();
 
-      const dateObjKedua = new Date(tanggalLahirKedua);
-      const tanggalKedua = dateObjKedua.getDate();
-      const bulanKedua = dateObjKedua.getMonth() + 1;
-      const tahunKedua = dateObjKedua.getFullYear();
+            // Konversi ke Hijriah
+            const hijriahPertama = gregorianToHijri(tanggalPertama, bulanPertama, tahunPertama);
+            const hijriahKedua = gregorianToHijri(tanggalKedua, bulanKedua, tahunKedua);
 
-      const shioKedua = hitungShio(tahunKedua);
-      const zodiakKedua = hitungZodiak(tanggalKedua, bulanKedua);
-      const pasaranKedua = hitungPasaran(tanggalKedua, bulanKedua, tahunKedua, waktuLahirKedua);
-      const numerologiKedua = hitungNumerologi(namaKedua);
+            document.getElementById('infoNamaPertama').textContent = namaPertama;
+            document.getElementById('tanggalMasehiPertama').textContent = `${tanggalPertama} ${namaBulan[bulanPertama - 1]} ${tahunPertama}`;
+            document.getElementById('tanggalHijriahPertama').textContent = `${hijriahPertama.day} ${hijriahPertama.monthName} ${hijriahPertama.year} H`;
 
-      const neptuWatakPertama = hitungNeptuWatak(tanggalPertama, bulanPertama, tahunPertama, waktuLahirPertama, pasaranPertama);
-      const neptuWatakKedua = hitungNeptuWatak(tanggalKedua, bulanKedua, tahunKedua, waktuLahirKedua, pasaranKedua);
-      const perjodohanNeptu = hitungPerjodohanNeptu(neptuWatakPertama.totalNeptu, neptuWatakKedua.totalNeptu);
+            document.getElementById('infoNamaKedua').textContent = namaKedua;
+            document.getElementById('tanggalMasehiKedua').textContent = `${tanggalKedua} ${namaBulan[bulanKedua - 1]} ${tahunKedua}`;
+            document.getElementById('tanggalHijriahKedua').textContent = `${hijriahKedua.day} ${hijriahKedua.monthName} ${hijriahKedua.year} H`;
 
-      dataPasangan = {
-        namaPertama,
-        shioPertama,
-        zodiakPertama,
-        pasaranPertama,
-        numerologiPertama,
-        neptuWatakPertama,
-        tanggal1: tanggalPertama,
-        bulan1: bulanPertama,
-        tahun1: tahunPertama,
-        waktu1: waktuLahirPertama,
-        namaKedua,
-        shioKedua,
-        zodiakKedua,
-        pasaranKedua,
-        numerologiKedua,
-        neptuWatakKedua,
-        tanggal2: tanggalKedua,
-        bulan2: bulanKedua,
-        tahun2: tahunKedua,
-        waktu2: waktuLahirKedua,
-        perjodohanNeptu
-      };
+            const shioPertama = hitungShio(tahunPertama);
+            const zodiakPertama = hitungZodiak(tanggalPertama, bulanPertama);
+            const pasaranPertama = hitungPasaran(tanggalPertama, bulanPertama, tahunPertama, waktuLahirPertama);
+            const numerologiPertama = hitungNumerologi(namaPertama);
 
-      document.getElementById('namaPertamaResult').textContent = namaPertama;
-      document.getElementById('namaKeduaResult').textContent = namaKedua;
+            const shioKedua = hitungShio(tahunKedua);
+            const zodiakKedua = hitungZodiak(tanggalKedua, bulanKedua);
+            const pasaranKedua = hitungPasaran(tanggalKedua, bulanKedua, tahunKedua, waktuLahirKedua);
+            const numerologiKedua = hitungNumerologi(namaKedua);
 
-      document.getElementById('shioIconPertama').textContent = shioPertama.nama.split(' ')[1];
-      document.getElementById('shioNamePertama').textContent = shioPertama.nama;
-      document.getElementById('shioDescPertama').textContent = shioPertama.deskripsi;
-      document.getElementById('shioNegatifPertama').textContent = shioPertama.negatif;
-      document.getElementById('shioHariHokiPertama').textContent = shioPertama.hariHoki;
-      document.getElementById('shioHariNaasPertama').textContent = shioPertama.hariNaas;
+            const neptuWatakPertama = hitungNeptuWatak(tanggalPertama, bulanPertama, tahunPertama, waktuLahirPertama, pasaranPertama);
+            const neptuWatakKedua = hitungNeptuWatak(tanggalKedua, bulanKedua, tahunKedua, waktuLahirKedua, pasaranKedua);
+            const perjodohanNeptu = hitungPerjodohanNeptu(neptuWatakPertama.totalNeptu, neptuWatakKedua.totalNeptu);
 
-      document.getElementById('zodiakIconPertama').textContent = zodiakPertama.icon;
-      document.getElementById('zodiakNamePertama').textContent = zodiakPertama.nama;
-      document.getElementById('zodiakDescPertama').textContent = zodiakPertama.deskripsi;
-      document.getElementById('zodiakNegatifPertama').textContent = zodiakPertama.negatif;
-      document.getElementById('zodiakHariHokiPertama').textContent = zodiakPertama.hariHoki;
-      document.getElementById('zodiakHariNaasPertama').textContent = zodiakPertama.hariNaas;
+            dataPasangan = {
+                namaPertama,
+                shioPertama,
+                zodiakPertama,
+                pasaranPertama,
+                numerologiPertama,
+                neptuWatakPertama,
+                namaKedua,
+                shioKedua,
+                zodiakKedua,
+                pasaranKedua,
+                numerologiKedua,
+                neptuWatakKedua,
+                perjodohanNeptu
+            };
 
-      document.getElementById('pasaranIconPertama').textContent = pasaranPertama.icon;
-      document.getElementById('pasaranNamePertama').textContent = pasaranPertama.nama;
-      document.getElementById('pasaranDescPertama').textContent = pasaranPertama.deskripsi;
-      document.getElementById('pasaranNegatifPertama').textContent = pasaranPertama.negatif;
+            document.getElementById('namaPertamaResult').textContent = namaPertama;
+            document.getElementById('namaKeduaResult').textContent = namaKedua;
 
-      document.getElementById('numerologiIconPertama').textContent = `#${numerologiPertama.angka}`;
-      document.getElementById('numerologiAngkaPertama').textContent = `Angka ${numerologiPertama.angka}`;
-      document.getElementById('numerologiDescPertama').textContent = numerologiPertama.deskripsi;
-      document.getElementById('numerologiNegatifPertama').textContent = numerologiPertama.negatif;
+            document.getElementById('shioIconPertama').textContent = shioPertama.icon;
+            document.getElementById('shioNamePertama').textContent = shioPertama.nama;
+            document.getElementById('shioDescPertama').textContent = shioPertama.deskripsi;
+            document.getElementById('shioNegatifPertama').textContent = shioPertama.negatif;
+            document.getElementById('shioHariHokiPertama').textContent = shioPertama.hariHoki;
+            document.getElementById('shioHariNaasPertama').textContent = shioPertama.hariNaas;
 
-      document.getElementById('shioIconKedua').textContent = shioKedua.nama.split(' ')[1];
-      document.getElementById('shioNameKedua').textContent = shioKedua.nama;
-      document.getElementById('shioDescKedua').textContent = shioKedua.deskripsi;
-      document.getElementById('shioNegatifKedua').textContent = shioKedua.negatif;
-      document.getElementById('shioHariHokiKedua').textContent = shioKedua.hariHoki;
-      document.getElementById('shioHariNaasKedua').textContent = shioKedua.hariNaas;
+            document.getElementById('zodiakIconPertama').textContent = zodiakPertama.icon;
+            document.getElementById('zodiakNamePertama').textContent = zodiakPertama.nama;
+            document.getElementById('zodiakDescPertama').textContent = zodiakPertama.deskripsi;
+            document.getElementById('zodiakNegatifPertama').textContent = zodiakPertama.negatif;
+            document.getElementById('zodiakHariHokiPertama').textContent = zodiakPertama.hariHoki;
+            document.getElementById('zodiakHariNaasPertama').textContent = zodiakPertama.hariNaas;
 
-      document.getElementById('zodiakIconKedua').textContent = zodiakKedua.icon;
-      document.getElementById('zodiakNameKedua').textContent = zodiakKedua.nama;
-      document.getElementById('zodiakDescKedua').textContent = zodiakKedua.deskripsi;
-      document.getElementById('zodiakNegatifKedua').textContent = zodiakKedua.negatif;
-      document.getElementById('zodiakHariHokiKedua').textContent = zodiakKedua.hariHoki;
-      document.getElementById('zodiakHariNaasKedua').textContent = zodiakKedua.hariNaas;
+            document.getElementById('pasaranIconPertama').textContent = pasaranPertama.icon;
+            document.getElementById('pasaranNamePertama').textContent = pasaranPertama.nama;
+            document.getElementById('pasaranDescPertama').textContent = pasaranPertama.deskripsi;
+            document.getElementById('pasaranNegatifPertama').textContent = pasaranPertama.negatif;
 
-      document.getElementById('pasaranIconKedua').textContent = pasaranKedua.icon;
-      document.getElementById('pasaranNameKedua').textContent = pasaranKedua.nama;
-      document.getElementById('pasaranDescKedua').textContent = pasaranKedua.deskripsi;
-      document.getElementById('pasaranNegatifKedua').textContent = pasaranKedua.negatif;
+            document.getElementById('numerologiIconPertama').textContent = `#${numerologiPertama.angka}`;
+            document.getElementById('numerologiAngkaPertama').textContent = `Angka ${numerologiPertama.angka}`;
+            document.getElementById('numerologiDescPertama').textContent = numerologiPertama.deskripsi;
+            document.getElementById('numerologiNegatifPertama').textContent = numerologiPertama.negatif;
 
-      document.getElementById('numerologiIconKedua').textContent = `#${numerologiKedua.angka}`;
-      document.getElementById('numerologiAngkaKedua').textContent = `Angka ${numerologiKedua.angka}`;
-      document.getElementById('numerologiDescKedua').textContent = numerologiKedua.deskripsi;
-      document.getElementById('numerologiNegatifKedua').textContent = numerologiKedua.negatif;
+            document.getElementById('shioIconKedua').textContent = shioKedua.icon;
+            document.getElementById('shioNameKedua').textContent = shioKedua.nama;
+            document.getElementById('shioDescKedua').textContent = shioKedua.deskripsi;
+            document.getElementById('shioNegatifKedua').textContent = shioKedua.negatif;
+            document.getElementById('shioHariHokiKedua').textContent = shioKedua.hariHoki;
+            document.getElementById('shioHariNaasKedua').textContent = shioKedua.hariNaas;
 
-      // Format tanggal lahir untuk pasangan
-      const namaBulanPasangan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-      const tanggalPertamaFormatted = `${tanggalPertama} ${namaBulanPasangan[bulanPertama - 1]} ${tahunPertama}`;
-      const tanggalKeduaFormatted = `${tanggalKedua} ${namaBulanPasangan[bulanKedua - 1]} ${tahunKedua}`;
+            document.getElementById('zodiakIconKedua').textContent = zodiakKedua.icon;
+            document.getElementById('zodiakNameKedua').textContent = zodiakKedua.nama;
+            document.getElementById('zodiakDescKedua').textContent = zodiakKedua.deskripsi;
+            document.getElementById('zodiakNegatifKedua').textContent = zodiakKedua.negatif;
+            document.getElementById('zodiakHariHokiKedua').textContent = zodiakKedua.hariHoki;
+            document.getElementById('zodiakHariNaasKedua').textContent = zodiakKedua.hariNaas;
 
-      document.getElementById('neptuNamaPertama').textContent = namaPertama;
-      document.getElementById('neptuTanggalPertama').textContent = tanggalPertamaFormatted;
-      document.getElementById('neptuDetailPertama').textContent = `${neptuWatakPertama.hari} ${neptuWatakPertama.pasaran}`;
-      document.getElementById('neptuValuePertama').textContent = neptuWatakPertama.totalNeptu;
+            document.getElementById('pasaranIconKedua').textContent = pasaranKedua.icon;
+            document.getElementById('pasaranNameKedua').textContent = pasaranKedua.nama;
+            document.getElementById('pasaranDescKedua').textContent = pasaranKedua.deskripsi;
+            document.getElementById('pasaranNegatifKedua').textContent = pasaranKedua.negatif;
 
-      document.getElementById('neptuNamaKedua').textContent = namaKedua;
-      document.getElementById('neptuTanggalKedua').textContent = tanggalKeduaFormatted;
-      document.getElementById('neptuDetailKedua').textContent = `${neptuWatakKedua.hari} ${neptuWatakKedua.pasaran}`;
-      document.getElementById('neptuValueKedua').textContent = neptuWatakKedua.totalNeptu;
+            document.getElementById('numerologiIconKedua').textContent = `#${numerologiKedua.angka}`;
+            document.getElementById('numerologiAngkaKedua').textContent = `Angka ${numerologiKedua.angka}`;
+            document.getElementById('numerologiDescKedua').textContent = numerologiKedua.deskripsi;
+            document.getElementById('numerologiNegatifKedua').textContent = numerologiKedua.negatif;
 
-      document.getElementById('neptuSelisih').textContent = perjodohanNeptu.selisih;
-      document.getElementById('neptuHasil').textContent = perjodohanNeptu.hasil;
-      document.getElementById('perjodohanNeptuNama').textContent = perjodohanNeptu.watak.nama;
-      document.getElementById('perjodohanNeptuTingkat').textContent = `Tingkat: ${perjodohanNeptu.watak.tingkat}`;
-      document.getElementById('perjodohanNeptuDesc').textContent = perjodohanNeptu.watak.deskripsi;
-      document.getElementById('perjodohanNeptuSaran').textContent = perjodohanNeptu.watak.saran;
+            document.getElementById('neptuNamaPertama').textContent = namaPertama;
+            document.getElementById('neptuDetailPertama').textContent = `${neptuWatakPertama.hari} ${neptuWatakPertama.pasaran}`;
+            document.getElementById('neptuValuePertama').textContent = neptuWatakPertama.totalNeptu;
 
-      document.getElementById('formPasangan').classList.add('hidden');
-      document.getElementById('resultsPasangan').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+            document.getElementById('neptuNamaKedua').textContent = namaKedua;
+            document.getElementById('neptuDetailKedua').textContent = `${neptuWatakKedua.hari} ${neptuWatakKedua.pasaran}`;
+            document.getElementById('neptuValueKedua').textContent = neptuWatakKedua.totalNeptu;
 
-    document.getElementById('versiShioZodiak').addEventListener('click', function() {
-      const hasil = analisisShioZodiak(dataPasangan);
-      tampilkanHasilAnalisis(hasil, 'shioZodiak');
-      document.getElementById('detailPertama').classList.remove('hidden');
-      document.getElementById('detailKedua').classList.remove('hidden');
-    });
+            document.getElementById('neptuSelisih').textContent = perjodohanNeptu.selisih;
+            document.getElementById('neptuHasil').textContent = perjodohanNeptu.hasil;
+            document.getElementById('perjodohanNeptuNama').textContent = perjodohanNeptu.watak.nama;
+            document.getElementById('perjodohanNeptuTingkat').textContent = `Tingkat: ${perjodohanNeptu.watak.tingkat}`;
+            document.getElementById('perjodohanNeptuDesc').textContent = perjodohanNeptu.watak.deskripsi;
+            document.getElementById('perjodohanNeptuSaran').textContent = perjodohanNeptu.watak.saran;
 
-    document.getElementById('versiPasaranNumerologi').addEventListener('click', function() {
-      const hasil = analisisPasaranNumerologi(dataPasangan);
-      tampilkanHasilAnalisis(hasil, 'pasaranNumerologi');
-      document.getElementById('detailPertama').classList.remove('hidden');
-      document.getElementById('detailKedua').classList.remove('hidden');
-    });
+            document.getElementById('formPasangan').classList.add('hidden');
+            document.getElementById('resultsPasangan').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-    // ========== INISIALISASI ELEMENT SDK ==========
-    
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities: (config) => ({
-          recolorables: [
-            {
-              get: () => config.background_color || defaultConfig.background_color,
-              set: (value) => {
-                config.background_color = value;
-                window.elementSdk.setConfig({ background_color: value });
-              }
-            },
-            {
-              get: () => config.card_color || defaultConfig.card_color,
-              set: (value) => {
-                config.card_color = value;
-                window.elementSdk.setConfig({ card_color: value });
-              }
-            },
-            {
-              get: () => config.text_color || defaultConfig.text_color,
-              set: (value) => {
-                config.text_color = value;
-                window.elementSdk.setConfig({ text_color: value });
-              }
-            },
-            {
-              get: () => config.primary_button_color || defaultConfig.primary_button_color,
-              set: (value) => {
-                config.primary_button_color = value;
-                window.elementSdk.setConfig({ primary_button_color: value });
-              }
-            },
-            {
-              get: () => config.secondary_button_color || defaultConfig.secondary_button_color,
-              set: (value) => {
-                config.secondary_button_color = value;
-                window.elementSdk.setConfig({ secondary_button_color: value });
-              }
+        function tampilkanHasilAnalisis(hasil, versi) {
+            const { skor, kekuatan, tantangan } = hasil;
+
+            if (versi === 'shioZodiak') {
+                skorShioZodiakGlobal = skor;
+                kekuatanGlobal = kekuatanGlobal.concat(kekuatan);
+                tantanganGlobal = tantanganGlobal.concat(tantangan);
+            } else {
+                skorPasaranNumerologiGlobal = skor;
+                kekuatanGlobal = kekuatanGlobal.concat(kekuatan);
+                tantanganGlobal = tantanganGlobal.concat(tantangan);
             }
-          ],
-          borderables: [],
-          fontEditable: {
-            get: () => config.font_family || defaultConfig.font_family,
-            set: (value) => {
-              config.font_family = value;
-              window.elementSdk.setConfig({ font_family: value });
-            }
-          },
-          fontSizeable: {
-            get: () => config.font_size || defaultConfig.font_size,
-            set: (value) => {
-              config.font_size = value;
-              window.elementSdk.setConfig({ font_size: value });
-            }
-          }
-        }),
-        mapToEditPanelValues: (config) => new Map([
-          ["main_title", config.main_title || defaultConfig.main_title],
-          ["subtitle", config.subtitle || defaultConfig.subtitle],
-          ["calculate_button", config.calculate_button || defaultConfig.calculate_button],
-          ["reset_button", config.reset_button || defaultConfig.reset_button]
-        ])
-      });
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.elementSdk) {
-        onConfigChange(window.elementSdk.config);
-      }
-    });
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afd532436c6d210',t:'MTc2NjA0NjkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+            if (skorShioZodiakGlobal > 0 && skorPasaranNumerologiGlobal > 0) {
+                const rataRata = Math.round((skorShioZodiakGlobal + skorPasaranNumerologiGlobal) / 2);
+                
+                let status, icon, bgColor, statusColor;
+                if (rataRata >= 80) {
+                    status = 'Sangat Cocok!';
+                    icon = '🔥💖✨';
+                    bgColor = 'background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);';
+                    statusColor = 'text-pink-600';
+                } else if (rataRata >= 60) {
+                    status = 'Cocok';
+                    icon = '💕💫';
+                    bgColor = 'background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);';
+                    statusColor = 'text-blue-600';
+                } else if (rataRata >= 40) {
+                    status = 'Cukup Cocok';
+                    icon = '💛✨';
+                    bgColor = 'background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);';
+                    statusColor = 'text-green-600';
+                } else {
+                    status = 'Perlu Usaha Lebih';
+                    icon = '💪🌟';
+                    bgColor = 'background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);';
+                    statusColor = 'text-orange-600';
+                }
+
+                document.getElementById('kesimpulanBg').style = bgColor;
+                document.getElementById('kesimpulanIcon').textContent = icon;
+                document.getElementById('kesimpulanStatus').textContent = status;
+                document.getElementById('kesimpulanStatus').className = `text-4xl font-bold mb-2 ${statusColor}`;
+                
+                document.getElementById('skorShioZodiak').textContent = `${skorShioZodiakGlobal}%`;
+                document.getElementById('skorPasaranNumerologi').textContent = `${skorPasaranNumerologiGlobal}%`;
+                document.getElementById('skorRataRata').textContent = `${rataRata}%`;
+                document.getElementById('skorRataRata').className = `text-4xl font-bold ${statusColor}`;
+
+                const kekuatanUnique = [...new Set(kekuatanGlobal)];
+                const tantanganUnique = [...new Set(tantanganGlobal)];
+
+                document.getElementById('kesimpulanKekuatan').textContent = kekuatanUnique.join('. ') + '.';
+                document.getElementById('kesimpulanTantangan').textContent = tantanganUnique.join('. ') + '.';
+
+                let saran = '';
+                if (rataRata >= 80) {
+                    saran = 'Pertahankan chemistry kalian dengan terus berkomunikasi dan saling mendukung. Manfaatkan hari keberuntungan bersama untuk menciptakan momen indah. Kalian memiliki fondasi yang sangat kuat untuk hubungan jangka panjang yang harmonis.';
+                } else if (rataRata >= 60) {
+                    saran = 'Hubungan kalian memiliki potensi besar dengan kecocokan yang baik di berbagai aspek. Fokuslah pada kekuatan masing-masing dan saling melengkapi. Komunikasi terbuka dan saling menghormati akan membuat hubungan semakin kuat.';
+                } else if (rataRata >= 40) {
+                    saran = 'Butuh kompromi dan pengertian dari kedua belah pihak untuk mencapai keharmonisan. Hormati perbedaan dan fokus pada tujuan bersama. Dengan usaha konsisten dan kesabaran, hubungan bisa berkembang sangat positif.';
+                } else {
+                    saran = 'Hubungan membutuhkan kerja keras, dedikasi tinggi, dan komitmen kuat dari kedua pihak. Penting untuk memahami perbedaan mendasar dan terus mencari jalan tengah. Jika kalian berdua benar-benar berkomitmen dan saling mencintai, semua tantangan bisa diatasi.';
+                }
+                document.getElementById('kesimpulanSaran').textContent = saran;
+
+                document.getElementById('kesimpulanFinal').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Tampilkan analisis per versi
+            let kecocokanIcon, kecocokanStatus, kecocokanBg, kecocokanStatusColor;
+            if (skor >= 80) {
+                kecocokanStatus = 'Sangat Cocok!';
+                kecocokanIcon = '🔥💖';
+                kecocokanBg = 'background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);';
+                kecocokanStatusColor = 'text-pink-600';
+            } else if (skor >= 60) {
+                kecocokanStatus = 'Cocok';
+                kecocokanIcon = '💕✨';
+                kecocokanBg = 'background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);';
+                kecocokanStatusColor = 'text-blue-600';
+            } else if (skor >= 40) {
+                kecocokanStatus = 'Cukup Cocok';
+                kecocokanIcon = '💛';
+                kecocokanBg = 'background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);';
+                kecocokanStatusColor = 'text-green-600';
+            } else {
+                kecocokanStatus = 'Perlu Usaha Lebih';
+                kecocokanIcon = '💪';
+                kecocokanBg = 'background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);';
+                kecocokanStatusColor = 'text-orange-600';
+            }
+
+            document.getElementById('kecocokanBg').style = kecocokanBg;
+            document.getElementById('kecocokanIcon').textContent = kecocokanIcon;
+            document.getElementById('kecocokanStatus').textContent = kecocokanStatus;
+            document.getElementById('kecocokanStatus').className = `text-4xl font-bold mb-2 ${kecocokanStatusColor}`;
+            document.getElementById('kecocokanPersentase').textContent = `${skor}%`;
+            document.getElementById('kecocokanPersentase').className = `text-2xl font-semibold ${kecocokanStatusColor}`;
+
+            document.getElementById('kecocokanKekuatan').textContent = kekuatan.join('. ') + '.';
+            document.getElementById('kecocokanTantangan').textContent = tantangan.join('. ') + '.';
+
+            let saranVersi = '';
+            if (skor >= 80) {
+                saranVersi = 'Pertahankan keharmonisan dengan terus saling mendukung dan berkomunikasi.';
+            } else if (skor >= 60) {
+                saranVersi = 'Terus tingkatkan komunikasi dan saling memahami untuk hubungan yang lebih baik.';
+            } else if (skor >= 40) {
+                saranVersi = 'Butuh usaha ekstra dan kompromi dari kedua pihak untuk mencapai keharmonisan.';
+            } else {
+                saranVersi = 'Diperlukan komitmen sangat kuat dan kesabaran luar biasa untuk mempertahankan hubungan.';
+            }
+            document.getElementById('kecocokanSaran').textContent = saranVersi;
+        }
+
+        document.getElementById('versiShioZodiak').addEventListener('click', function() {
+            const hasil = analisisShioZodiak(dataPasangan);
+            tampilkanHasilAnalisis(hasil, 'shioZodiak');
+            document.getElementById('detailPertama').classList.remove('hidden');
+            document.getElementById('detailKedua').classList.remove('hidden');
+        });
+
+        document.getElementById('versiPasaranNumerologi').addEventListener('click', function() {
+            const hasil = analisisPasaranNumerologi(dataPasangan);
+            tampilkanHasilAnalisis(hasil, 'pasaranNumerologi');
+            document.getElementById('detailPertama').classList.remove('hidden');
+            document.getElementById('detailKedua').classList.remove('hidden');
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afd7012377dff78',t:'MTc2NjA0ODA5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
